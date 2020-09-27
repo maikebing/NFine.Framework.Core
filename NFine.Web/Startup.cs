@@ -11,12 +11,15 @@ using NFine.Data;
 using System.IO;
 using System.Reflection;
 using Microsoft.EntityFrameworkCore.Diagnostics;
+using Microsoft.Extensions.DependencyModel;
+using Microsoft.Extensions.Hosting;
+using Microsoft.EntityFrameworkCore.Migrations.Internal;
 
 namespace NFine.Web
 {
     public class Startup
     {
-        public Startup(IHostingEnvironment env)
+        public Startup(IWebHostEnvironment env)
         {
            // System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
 
@@ -53,9 +56,9 @@ namespace NFine.Web
                 options.LoginPath = "/Login/Index";
                 options.Cookie.Name = "AuthCookie";
             });
-            services.AddDbContextPool<NFineDbContext>(optionsAction =>
+            services.AddDbContext<NFineDbContext>(optionsAction =>
             {
-                optionsAction.UseSqlServer(Configuration.GetSection("connectionStrings:NFineDbContext").Value, options => options.UseRowNumberForPaging());
+                optionsAction.UseMySQL(Configuration.GetSection("connectionStrings:NFineDbContext").Value,b=>b.MigrationsAssembly("NFine.Data").MigrationsAssembly("NFine.Web"));
 #if DEBUG
                 optionsAction.ConfigureWarnings(warningsConfigurationBuilderAction => warningsConfigurationBuilderAction.Throw(RelationalEventId.QueryClientEvaluationWarning));
 #endif
@@ -76,7 +79,7 @@ namespace NFine.Web
             #endregion
 
             #region 注入app类
-            var nfineApplication = Microsoft.Extensions.DependencyModel.DependencyContext.Default.CompileLibraries.FirstOrDefault(_ => _.Name.Equals("NFine.Application"));
+            var nfineApplication =   DependencyContext.Default.CompileLibraries.FirstOrDefault(_ => _.Name.Equals("NFine.Application"));
             var application = System.Runtime.Loader.AssemblyLoadContext.Default.LoadFromAssemblyName(new AssemblyName(nfineApplication.Name));
             var apps = application.GetTypes().Where(_ => _.IsClass && _.IsPublic).Where(type => !String.IsNullOrEmpty(type.Namespace));
             foreach (var type in apps)
@@ -87,7 +90,7 @@ namespace NFine.Web
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
            
             if (env.IsDevelopment())
@@ -110,29 +113,31 @@ namespace NFine.Web
 
             app.UseStaticFiles();
 
-            app.UseAuthentication();
-
-            app.UseMvc(routes =>
+            app.UseRouting();
+            app.UseAuthorization();
+            app.UseEndpoints(routes =>
             {
-                routes.MapRoute(
+                routes.MapRazorPages();
+                routes.MapControllers();
+                routes.MapControllerRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                     pattern : "{controller=Home}/{action=Index}/{id?}");
 
-                routes.MapRoute(
+                routes.MapControllerRoute(
                     name: "ExampleManage",
-                    template: "ExampleManage/{controller}/{action=Index}/{id?}");
+                    pattern: "ExampleManage/{controller}/{action=Index}/{id?}");
 
-                routes.MapRoute(
+                routes.MapControllerRoute(
                     name: "ReportManage",
-                    template: "ReportManage/{controller}/{action=Index}/{id?}");
+                    pattern: "ReportManage/{controller}/{action=Index}/{id?}");
 
-                routes.MapRoute(
+                routes.MapControllerRoute(
                   name: "SystemManage",
-                  template: "SystemManage/{controller}/{action=Index}/{id?}");
+                  pattern: "SystemManage/{controller}/{action=Index}/{id?}");
 
-                routes.MapRoute(
+                routes.MapControllerRoute(
                  name: "SystemSecurity",
-                 template: "SystemSecurity/{controller}/{action=Index}/{id?}");
+                 pattern: "SystemSecurity/{controller}/{action=Index}/{id?}");
             });
         }
     }

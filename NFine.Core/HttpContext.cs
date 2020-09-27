@@ -10,8 +10,8 @@ namespace System.Web
     {
         private static Microsoft.AspNetCore.Http.IHttpContextAccessor m_httpContextAccessor;
 
-        private static Microsoft.AspNetCore.Hosting.IHostingEnvironment _hostingEnvironment;
-        public static void Configure(Microsoft.AspNetCore.Http.IHttpContextAccessor httpContextAccessor, Microsoft.AspNetCore.Hosting.IHostingEnvironment hostingEnvironment)
+        private static Microsoft.AspNetCore.Hosting.IWebHostEnvironment _hostingEnvironment;
+        public static void Configure(Microsoft.AspNetCore.Http.IHttpContextAccessor httpContextAccessor, Microsoft.AspNetCore.Hosting.IWebHostEnvironment hostingEnvironment)
         {
             m_httpContextAccessor = httpContextAccessor;
             _hostingEnvironment = hostingEnvironment;
@@ -26,7 +26,7 @@ namespace System.Web
             }
         }
 
-        public static IHostingEnvironment HostingEnvironment
+        public static IWebHostEnvironment HostingEnvironment
         {
             get { return _hostingEnvironment; }
         }

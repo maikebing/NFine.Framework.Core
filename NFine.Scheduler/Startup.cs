@@ -16,6 +16,7 @@ using CrystalQuartz.AspNetCore;
 using Microsoft.Extensions.Logging;
 using System.Reflection;
 using NFine.Data;
+using Microsoft.Extensions.DependencyModel;
 
 namespace NFine.Scheduler
 {
@@ -56,7 +57,7 @@ namespace NFine.Scheduler
             #endregion
 
             #region 注入app类
-            var nfineApplication = Microsoft.Extensions.DependencyModel.DependencyContext.Default.CompileLibraries.FirstOrDefault(_ => _.Name.Equals("NFine.Application"));
+            var nfineApplication =  DependencyContext.Default.CompileLibraries.FirstOrDefault(_ => _.Name.Equals("NFine.Application"));
             var application = System.Runtime.Loader.AssemblyLoadContext.Default.LoadFromAssemblyName(new AssemblyName(nfineApplication.Name));
             var apps = application.GetTypes().Where(_ => _.IsClass && _.IsPublic).Where(type => !String.IsNullOrEmpty(type.Namespace));
             foreach (var type in apps)

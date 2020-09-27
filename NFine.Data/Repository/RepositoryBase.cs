@@ -26,14 +26,7 @@ namespace NFine.Data
         private DbTransaction dbTransaction { get; set; }
         public IRepositoryBase BeginTrans()
         {
-
-            DbConnection dbConnection = dbcontext.Database.GetDbConnection();
-            if (dbConnection.State == ConnectionState.Closed)
-            {
-                dbConnection.Open();
-            }
-            dbTransaction = dbConnection.BeginTransaction();
-            dbcontext.Database.UseTransaction(dbTransaction);
+            dbcontext.Database.BeginTransaction();
            return this;
         }
         public int Commit()
@@ -146,12 +139,12 @@ namespace NFine.Data
         public List<TEntity> FindList<TEntity>(string strSql) where TEntity : class
         {
             //return dbcontext.Database.SqlQuery<TEntity>(strSql).<TEntity>();
-            return dbcontext.Set<TEntity>().FromSql(strSql).ToList<TEntity>();
+            return dbcontext.Set<TEntity>(). FromSqlRaw(strSql).ToList<TEntity>();
         }
         public List<TEntity> FindList<TEntity>(string strSql, DbParameter[] dbParameter) where TEntity : class
         {
             //return dbcontext.Database.SqlQuery<TEntity>(strSql, dbParameter).ToList<TEntity>();
-            return dbcontext.Set<TEntity>().FromSql(strSql).ToList<TEntity>();
+            return dbcontext.Set<TEntity>().FromSqlRaw(strSql).ToList<TEntity>();
         }
         public List<TEntity> FindList<TEntity>(Pagination pagination) where TEntity : class,new()
         {

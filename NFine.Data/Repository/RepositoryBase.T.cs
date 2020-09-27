@@ -96,11 +96,11 @@ namespace NFine.Data
         }
         public List<TEntity> FindList(string strSql)
         {
-            return dbcontext.Set<TEntity>().FromSql(strSql).ToList<TEntity>();
+            return dbcontext.Set<TEntity>().FromSqlRaw(strSql).ToList<TEntity>();
         }
         public List<TEntity> FindList(string strSql, DbParameter[] dbParameter)
         {
-            return dbcontext.Set<TEntity>().FromSql(strSql, dbParameter).ToList<TEntity>();
+            return dbcontext.Set<TEntity>().FromSqlRaw(strSql, dbParameter).ToList<TEntity>();
         }
         public List<TEntity> FindList(Pagination pagination)
         {

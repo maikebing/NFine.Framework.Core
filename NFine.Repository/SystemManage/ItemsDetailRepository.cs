@@ -7,6 +7,7 @@ using System.Data.Common;
 using System.Data.SqlClient;
 using System.Text;
 using System.Linq;
+using MySql.Data.MySqlClient;
 
 namespace NFine.Repository.SystemManage
 {
@@ -30,7 +31,7 @@ namespace NFine.Repository.SystemManage
                             ");//ORDER BY F_SortCode ASC
             DbParameter[] parameter = 
             {
-                 new SqlParameter("@enCode",enCode)
+                 new MySqlParameter(  "@enCode",enCode)
             };
             return this.FindList(strSql.ToString(), parameter)?.OrderBy(_ => _.F_SortCode)?.ToList();
         }

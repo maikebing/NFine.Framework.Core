@@ -2,19 +2,20 @@
 using System.Configuration;
 using System.Data;
 using System.Data.Common;
-using System.Data.SqlClient;
 using NFine.Code;
 
 namespace NFine.Data.Extensions
 {
     public class DbHelper
     {
+        private static DbProviderFactory Factory = MySql.Data.MySqlClient.MySqlClientFactory.Instance;
         private static string connstring = System.Configuration.ConfigurationManager.ConnectionStrings["NFineDbContext"].ToString();  //ConfigurationManager.ConnectionStrings["NFineDbContext"].ConnectionString;
         public static int ExecuteSqlCommand(string cmdText)
         {
-            using (DbConnection conn = new SqlConnection(connstring))
+            using (DbConnection conn = Factory.CreateConnection())
             {
-                DbCommand cmd = new SqlCommand();
+                conn.ConnectionString = connstring;
+                DbCommand cmd = conn.CreateCommand();
                 PrepareCommand(cmd, conn, null, CommandType.Text, cmdText, null);
                 return cmd.ExecuteNonQuery();
             }

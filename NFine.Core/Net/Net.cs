@@ -136,7 +136,7 @@ namespace NFine.Code
                 string url = "http://apis.juhe.cn/ip/ip2addr?ip=" + ip + "&dtype=json&key=b39857e36bee7a305d55cdb113a9d725";
                 res = HttpMethods.HttpGet(url);
                 var resjson = res.ToObject<objex>();
-                res = resjson.result.area + " " + resjson.result.location;
+                res = resjson?.result?.area + " " + resjson?.result?.location;
             }
             catch
             {
@@ -151,7 +151,7 @@ namespace NFine.Code
                 string url = "https://sp0.baidu.com/8aQDcjqpAAV3otqbppnN2DJv/api.php?query=" + ip + "&resource_id=6006&ie=utf8&oe=gbk&format=json";
                 res = HttpMethods.HttpGet(url, Encoding.GetEncoding("GBK"));
                 var resjson = res.ToObject<obj>();
-                res = resjson.data[0].location;
+                res = resjson?.data[0].location;
             }
             catch
             {
