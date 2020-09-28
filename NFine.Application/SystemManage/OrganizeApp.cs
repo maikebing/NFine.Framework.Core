@@ -14,11 +14,11 @@ namespace NFine.Application.SystemManage
         {
             this.service = organizeRepository;
         }
-        public List<OrganizeEntity> GetList()
+        public List<sys_OrganizeEntity> GetList()
         {
             return service.IQueryable().OrderBy(t => t.F_CreatorTime).ToList();
         }
-        public OrganizeEntity GetForm(string keyValue)
+        public sys_OrganizeEntity GetForm(string keyValue)
         {
             return service.FindEntity(keyValue);
         }
@@ -33,7 +33,7 @@ namespace NFine.Application.SystemManage
                 service.Delete(t => t.F_Id == keyValue);
             }
         }
-        public void SubmitForm(OrganizeEntity organizeEntity, string keyValue)
+        public void SubmitForm(sys_OrganizeEntity organizeEntity, string keyValue)
         {
             if (!string.IsNullOrEmpty(keyValue))
             {

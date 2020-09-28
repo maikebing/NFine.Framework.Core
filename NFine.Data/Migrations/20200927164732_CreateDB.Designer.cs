@@ -442,7 +442,7 @@ namespace NFine.Data
 
                     b.HasKey("F_Id");
 
-                    b.ToTable("Sys_NewsInfo");
+                    b.ToTable("T_NewsInfo");
                 });
 
             modelBuilder.Entity("NFine.Domain.Entity.SystemManage.OrganizeEntity", b =>

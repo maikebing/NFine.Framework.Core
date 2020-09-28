@@ -20,13 +20,13 @@ namespace NFine.Application.SystemManage
             this.moduleApp = moduleApp;
             this.moduleButtonApp = moduleButtonApp;
         }
-        public List<RoleAuthorizeEntity> GetList(string ObjectId)
+        public List<sys_RoleAuthorizeEntity> GetList(string ObjectId)
         {
             return service.IQueryable(t => t.F_ObjectId == ObjectId).ToList();
         }
-        public List<ModuleEntity> GetMenuList(string roleId)
+        public List<sys_ModuleEntity> GetMenuList(string roleId)
         {
-            var data = new List<ModuleEntity>();
+            var data = new List<sys_ModuleEntity>();
             if (OperatorProvider.Provider.GetCurrent().IsSystem)
             {
                 data = moduleApp.GetList();
@@ -37,7 +37,7 @@ namespace NFine.Application.SystemManage
                 var authorizedata = service.IQueryable(t => t.F_ObjectId == roleId && t.F_ItemType == 1).ToList();
                 foreach (var item in authorizedata)
                 {
-                    ModuleEntity moduleEntity = moduledata.Find(t => t.F_Id == item.F_ItemId);
+                    sys_ModuleEntity moduleEntity = moduledata.Find(t => t.F_Id == item.F_ItemId);
                     if (moduleEntity != null)
                     {
                         data.Add(moduleEntity);
@@ -46,9 +46,9 @@ namespace NFine.Application.SystemManage
             }
             return data.OrderBy(t => t.F_SortCode).ToList();
         }
-        public List<ModuleButtonEntity> GetButtonList(string roleId)
+        public List<sys_ModuleButtonEntity> GetButtonList(string roleId)
         {
-            var data = new List<ModuleButtonEntity>();
+            var data = new List<sys_ModuleButtonEntity>();
             if (OperatorProvider.Provider.GetCurrent().IsSystem)
             {
                 data = moduleButtonApp.GetList();
@@ -59,7 +59,7 @@ namespace NFine.Application.SystemManage
                 var authorizedata = service.IQueryable(t => t.F_ObjectId == roleId && t.F_ItemType == 2).ToList();
                 foreach (var item in authorizedata)
                 {
-                    ModuleButtonEntity moduleButtonEntity = buttondata.Find(t => t.F_Id == item.F_ItemId);
+                    sys_ModuleButtonEntity moduleButtonEntity = buttondata.Find(t => t.F_Id == item.F_ItemId);
                     if (moduleButtonEntity != null)
                     {
                         data.Add(moduleButtonEntity);
@@ -81,12 +81,12 @@ namespace NFine.Application.SystemManage
                 {
                     if (item.F_ItemType == 1)
                     {
-                        ModuleEntity moduleEntity = moduledata.Find(t => t.F_Id == item.F_ItemId);
+                        sys_ModuleEntity moduleEntity = moduledata.Find(t => t.F_Id == item.F_ItemId);
                         authorizeurldata.Add(new AuthorizeActionModel { F_Id = moduleEntity.F_Id, F_UrlAddress = moduleEntity.F_UrlAddress });
                     }
                     else if (item.F_ItemType == 2)
                     {
-                        ModuleButtonEntity moduleButtonEntity = buttondata.Find(t => t.F_Id == item.F_ItemId);
+                        sys_ModuleButtonEntity moduleButtonEntity = buttondata.Find(t => t.F_Id == item.F_ItemId);
                         authorizeurldata.Add(new AuthorizeActionModel { F_Id = moduleButtonEntity.F_ModuleId, F_UrlAddress = moduleButtonEntity.F_UrlAddress });
                     }
                 }

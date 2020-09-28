@@ -2,7 +2,7 @@
 
 namespace NFine.Domain.Entity.SystemManage
 {
-    public class UserEntity : IEntity<UserEntity>, ICreationAudited, IDeleteAudited, IModificationAudited
+    public class sys_UserEntity : IEntity<sys_UserEntity>, ICreationAudited, IDeleteAudited, IModificationAudited
     {
         public string F_Id { get; set; }
         public string F_Account { get; set; }

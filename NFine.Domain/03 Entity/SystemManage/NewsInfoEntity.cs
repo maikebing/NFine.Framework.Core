@@ -4,7 +4,7 @@ using System.Text;
 
 namespace NFine.Domain.Entity.SystemManage
 {
-    public class NewsInfoEntity : IEntity<NewsInfoEntity>, ICreationAudited, IDeleteAudited, IModificationAudited
+    public class T_NewsInfoEntity : IEntity<T_NewsInfoEntity>, ICreationAudited, IDeleteAudited, IModificationAudited
     {
         public string F_Id { get; set; }
         public string F_CreatorUserId { get; set; }

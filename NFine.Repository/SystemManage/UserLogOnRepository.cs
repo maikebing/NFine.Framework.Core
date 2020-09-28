@@ -5,7 +5,7 @@ using NFine.Repository.SystemManage;
 
 namespace NFine.Repository.SystemManage
 {
-    public class UserLogOnRepository : RepositoryBase<UserLogOnEntity>, IUserLogOnRepository
+    public class UserLogOnRepository : RepositoryBase<sys_UserLogOnEntity>, IUserLogOnRepository
     {
         public UserLogOnRepository(NFineDbContext dbContext):base(dbContext)
         {

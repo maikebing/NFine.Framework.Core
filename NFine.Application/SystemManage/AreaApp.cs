@@ -14,11 +14,11 @@ namespace NFine.Application.SystemManage
         {
             this.service = areaRepository;
         }
-        public List<AreaEntity> GetList()
+        public List<sys_AreaEntity> GetList()
         {
             return service.IQueryable().ToList();
         }
-        public AreaEntity GetForm(string keyValue)
+        public sys_AreaEntity GetForm(string keyValue)
         {
             return service.FindEntity(keyValue);
         }
@@ -33,7 +33,7 @@ namespace NFine.Application.SystemManage
                 service.Delete(t => t.F_Id == keyValue);
             }
         }
-        public void SubmitForm(AreaEntity areaEntity, string keyValue)
+        public void SubmitForm(sys_AreaEntity areaEntity, string keyValue)
         {
             if (!string.IsNullOrEmpty(keyValue))
             {

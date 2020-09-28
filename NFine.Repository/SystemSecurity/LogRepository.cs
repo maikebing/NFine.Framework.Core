@@ -5,7 +5,7 @@ using NFine.Repository.SystemSecurity;
 
 namespace NFine.Repository.SystemSecurity
 {
-    public class LogRepository : RepositoryBase<LogEntity>, ILogRepository
+    public class LogRepository : RepositoryBase<sys_LogEntity>, ILogRepository
     {
         public LogRepository(NFineDbContext dbContext) : base(dbContext)
         {

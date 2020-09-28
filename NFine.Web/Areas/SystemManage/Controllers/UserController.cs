@@ -47,7 +47,7 @@ namespace NFine.Web.Areas.SystemManage.Controllers
         [HttpPost]
         //[HandlerAjaxOnly]
         [ValidateAntiForgeryToken]
-        public ActionResult SubmitForm(UserEntity userEntity, UserLogOnEntity userLogOnEntity, string keyValue)
+        public ActionResult SubmitForm(sys_UserEntity userEntity, sys_UserLogOnEntity userLogOnEntity, string keyValue)
         {
             userApp.SubmitForm(userEntity, userLogOnEntity, keyValue);
             return Success("操作成功。");
@@ -81,7 +81,7 @@ namespace NFine.Web.Areas.SystemManage.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DisabledAccount(string keyValue)
         {
-            UserEntity userEntity = new UserEntity();
+            sys_UserEntity userEntity = new sys_UserEntity();
             userEntity.F_Id = keyValue;
             userEntity.F_EnabledMark = false;
             userApp.UpdateForm(userEntity);
@@ -93,7 +93,7 @@ namespace NFine.Web.Areas.SystemManage.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult EnabledAccount(string keyValue)
         {
-            UserEntity userEntity = new UserEntity();
+            sys_UserEntity userEntity = new sys_UserEntity();
             userEntity.F_Id = keyValue;
             userEntity.F_EnabledMark = true;
             userApp.UpdateForm(userEntity);

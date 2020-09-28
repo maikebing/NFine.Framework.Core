@@ -15,16 +15,16 @@ namespace NFine.Application.SystemManage
         {
             this.service = moduleButtonRepository;
         }
-        public List<ModuleButtonEntity> GetList(string moduleId = "")
+        public List<sys_ModuleButtonEntity> GetList(string moduleId = "")
         {
-            var expression = ExtLinq.True<ModuleButtonEntity>();
+            var expression = ExtLinq.True<sys_ModuleButtonEntity>();
             if (!string.IsNullOrEmpty(moduleId))
             {
                 expression = expression.And(t => t.F_ModuleId == moduleId);
             }
             return service.IQueryable(expression).OrderBy(t => t.F_SortCode).ToList();
         }
-        public ModuleButtonEntity GetForm(string keyValue)
+        public sys_ModuleButtonEntity GetForm(string keyValue)
         {
             return service.FindEntity(keyValue);
         }
@@ -39,7 +39,7 @@ namespace NFine.Application.SystemManage
                 service.Delete(t => t.F_Id == keyValue);
             }
         }
-        public void SubmitForm(ModuleButtonEntity moduleButtonEntity, string keyValue)
+        public void SubmitForm(sys_ModuleButtonEntity moduleButtonEntity, string keyValue)
         {
             if (!string.IsNullOrEmpty(keyValue))
             {
@@ -56,10 +56,10 @@ namespace NFine.Application.SystemManage
         {
             string[] ArrayId = Ids.Split(',');
             var data = this.GetList();
-            List<ModuleButtonEntity> entitys = new List<ModuleButtonEntity>();
+            List<sys_ModuleButtonEntity> entitys = new List<sys_ModuleButtonEntity>();
             foreach (string item in ArrayId)
             {
-                ModuleButtonEntity moduleButtonEntity = data.Find(t => t.F_Id == item);
+                sys_ModuleButtonEntity moduleButtonEntity = data.Find(t => t.F_Id == item);
                 moduleButtonEntity.F_Id = Common.GuId();
                 moduleButtonEntity.F_ModuleId = moduleId;
                 entitys.Add(moduleButtonEntity);

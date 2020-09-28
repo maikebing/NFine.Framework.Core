@@ -2,7 +2,7 @@
 
 namespace NFine.Domain.Entity.SystemManage
 {
-    public class RoleAuthorizeEntity : IEntity<RoleAuthorizeEntity>, ICreationAudited
+    public class sys_RoleAuthorizeEntity : IEntity<sys_RoleAuthorizeEntity>, ICreationAudited
     {
         public string F_Id { get; set; }
         public int? F_ItemType { get; set; }

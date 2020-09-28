@@ -17,9 +17,9 @@ namespace NFine.Application.SystemManage
         {
             this.service = newsInfoRepository;
         }
-        public List<NewsInfoEntity> GetList(Pagination pagination, string keyword)
+        public List<T_NewsInfoEntity> GetList(Pagination pagination, string keyword)
         {
-            var expression = ExtLinq.True<NewsInfoEntity>();
+            var expression = ExtLinq.True<T_NewsInfoEntity>();
             expression = expression.And(_ => _.F_DeleteMark != true);
             if (!string.IsNullOrWhiteSpace(keyword))
             {
@@ -28,7 +28,7 @@ namespace NFine.Application.SystemManage
             return service.FindList(expression, pagination); ;
         }
 
-        public void SubmitForm(NewsInfoEntity newsInfoEntity, string keyValue)
+        public void SubmitForm(T_NewsInfoEntity newsInfoEntity, string keyValue)
         {
             if (!string.IsNullOrEmpty(keyValue))
             {
@@ -43,7 +43,7 @@ namespace NFine.Application.SystemManage
         }
 
 
-        public NewsInfoEntity GetForm(string keyValue)
+        public T_NewsInfoEntity GetForm(string keyValue)
         {
             if (string.IsNullOrWhiteSpace(keyValue))
                 return null;
@@ -53,7 +53,7 @@ namespace NFine.Application.SystemManage
 
         public void DeleteForm(string keyValue)
         {
-            NewsInfoEntity newsInfoEntity = new NewsInfoEntity();
+            T_NewsInfoEntity newsInfoEntity = new T_NewsInfoEntity();
             newsInfoEntity.Modify(keyValue);
             newsInfoEntity.Remove();
             service.Update(newsInfoEntity);
@@ -65,9 +65,9 @@ namespace NFine.Application.SystemManage
         /// <param name="type">1:</param>
         /// <param name="topNumber"></param>
         /// <returns></returns>
-        public List<NewsInfoEntity> GetList(int type, int topNumber)
+        public List<T_NewsInfoEntity> GetList(int type, int topNumber)
         {
-            var expression = ExtLinq.True<NewsInfoEntity>();
+            var expression = ExtLinq.True<T_NewsInfoEntity>();
             expression = expression.And(_ => _.F_Type == type && _.F_DeleteMark != true && _.F_Status == true);
             return service.IQueryable(expression)?.ToList();
         }

@@ -65,7 +65,7 @@ namespace NFine.Web.Controllers
             
             var data = organizeApp.GetList();
             Dictionary<string, object> dictionary = new Dictionary<string, object>();
-            foreach (OrganizeEntity item in data)
+            foreach (sys_OrganizeEntity item in data)
             {
                 var fieldItem = new
                 {
@@ -81,7 +81,7 @@ namespace NFine.Web.Controllers
             
             var data = roleApp.GetList();
             Dictionary<string, object> dictionary = new Dictionary<string, object>();
-            foreach (RoleEntity item in data)
+            foreach (sys_RoleEntity item in data)
             {
                 var fieldItem = new
                 {
@@ -97,7 +97,7 @@ namespace NFine.Web.Controllers
             
             var data = dutyApp.GetList();
             Dictionary<string, object> dictionary = new Dictionary<string, object>();
-            foreach (RoleEntity item in data)
+            foreach (sys_RoleEntity item in data)
             {
                 var fieldItem = new
                 {
@@ -114,11 +114,11 @@ namespace NFine.Web.Controllers
             var roleId = OperatorProvider.Provider.GetCurrent().RoleId;
             return ToMenuJson(roleAuthorizeApp.GetMenuList(roleId), "0");
         }
-        private string ToMenuJson(List<ModuleEntity> data, string parentId)
+        private string ToMenuJson(List<sys_ModuleEntity> data, string parentId)
         {
             StringBuilder sbJson = new StringBuilder();
             sbJson.Append("[");
-            List<ModuleEntity> entitys = data.FindAll(t => t.F_ParentId == parentId);
+            List<sys_ModuleEntity> entitys = data.FindAll(t => t.F_ParentId == parentId);
             if (entitys.Count > 0)
             {
                 foreach (var item in entitys)
@@ -136,9 +136,9 @@ namespace NFine.Web.Controllers
         {
             var roleId = OperatorProvider.Provider.GetCurrent().RoleId;
             var data = roleAuthorizeApp.GetButtonList(roleId);
-            var dataModuleId = data.Distinct(new ExtList<ModuleButtonEntity>("F_ModuleId"));
+            var dataModuleId = data.Distinct(new ExtList<sys_ModuleButtonEntity>("F_ModuleId"));
             Dictionary<string, object> dictionary = new Dictionary<string, object>();
-            foreach (ModuleButtonEntity item in dataModuleId)
+            foreach (sys_ModuleButtonEntity item in dataModuleId)
             {
                 var buttonList = data.Where(t => t.F_ModuleId.Equals(item.F_ModuleId));
                 dictionary.Add(item.F_ModuleId, buttonList);

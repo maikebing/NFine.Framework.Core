@@ -16,9 +16,9 @@ namespace NFine.Application.SystemManage
             this.service = userRepository;
             this.userLogOnApp = userLogOnApp;
         }
-        public List<UserEntity> GetList(Pagination pagination, string keyword)
+        public List<sys_UserEntity> GetList(Pagination pagination, string keyword)
         {
-            var expression = ExtLinq.True<UserEntity>();
+            var expression = ExtLinq.True<sys_UserEntity>();
             if (!string.IsNullOrEmpty(keyword))
             {
                 expression = expression.And(t => t.F_Account.Contains(keyword));
@@ -28,7 +28,7 @@ namespace NFine.Application.SystemManage
             expression = expression.And(t => t.F_Account != "admin");
             return service.FindList(expression, pagination);
         }
-        public UserEntity GetForm(string keyValue)
+        public sys_UserEntity GetForm(string keyValue)
         {
             return service.FindEntity(keyValue);
         }
@@ -36,7 +36,7 @@ namespace NFine.Application.SystemManage
         {
             service.DeleteForm(keyValue);
         }
-        public void SubmitForm(UserEntity userEntity, UserLogOnEntity userLogOnEntity, string keyValue)
+        public void SubmitForm(sys_UserEntity userEntity, sys_UserLogOnEntity userLogOnEntity, string keyValue)
         {
             if (!string.IsNullOrEmpty(keyValue))
             {
@@ -48,18 +48,18 @@ namespace NFine.Application.SystemManage
             }
             service.SubmitForm(userEntity, userLogOnEntity, keyValue);
         }
-        public void UpdateForm(UserEntity userEntity)
+        public void UpdateForm(sys_UserEntity userEntity)
         {
             service.Update(userEntity);
         }
-        public UserEntity CheckLogin(string username, string password)
+        public sys_UserEntity CheckLogin(string username, string password)
         {
-            UserEntity userEntity = service.FindEntity(t => t.F_Account == username);
+            sys_UserEntity userEntity = service.FindEntity(t => t.F_Account == username);
             if (userEntity != null)
             {
                 if (userEntity.F_EnabledMark == true)
                 {
-                    UserLogOnEntity userLogOnEntity = userLogOnApp.GetForm(userEntity.F_Id);
+                    sys_UserLogOnEntity userLogOnEntity = userLogOnApp.GetForm(userEntity.F_Id);
                     string dbPassword = EncryptProvider.Md5(EncryptProvider.DESEncrypt(password.ToLower(), userLogOnEntity.F_UserSecretkey.PadRight(24)).ToLower(), Code.Internal.MD5Length.L32).ToLower();
                     if (dbPassword == userLogOnEntity.F_UserPassword)
                     {
@@ -99,7 +99,7 @@ namespace NFine.Application.SystemManage
         /// <returns></returns>
         public bool ChangePassworld(string userId, string oldPassword, string newPassword)
         {
-            UserLogOnEntity userLogOnEntity = userLogOnApp.GetForm(userId);
+            sys_UserLogOnEntity userLogOnEntity = userLogOnApp.GetForm(userId);
 
             string dbPassword = EncryptProvider.Md5(oldPassword.ToLower(), Code.Internal.MD5Length.L32).ToLower();
             if (dbPassword != userLogOnEntity.F_UserPassword)
