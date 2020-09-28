@@ -47,7 +47,7 @@ namespace NFine.Data
                 {
                     this.dbTransaction.Rollback();
                 }
-                throw;
+                throw em;
             }
             finally
             {

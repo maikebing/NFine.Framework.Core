@@ -6,11 +6,11 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NFine.Data;
 
-namespace NFine.Data
+namespace NFine.Data.Migrations
 {
     [DbContext(typeof(NFineDbContext))]
-    [Migration("20200928063559_Seeds")]
-    partial class Seeds
+    [Migration("20200928154102_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -19,7 +19,62 @@ namespace NFine.Data
                 .HasAnnotation("ProductVersion", "3.1.8")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
-            modelBuilder.Entity("NFine.Domain.Entity.SystemManage.AreaEntity", b =>
+            modelBuilder.Entity("NFine.Domain.Entity.SystemManage.T_NewsInfoEntity", b =>
+                {
+                    b.Property<string>("F_Id")
+                        .HasColumnType("varchar(767)");
+
+                    b.Property<string>("F_Content")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime?>("F_CreatorTime")
+                        .HasColumnType("datetime");
+
+                    b.Property<string>("F_CreatorUserId")
+                        .HasColumnType("text");
+
+                    b.Property<string>("F_CreatorUserName")
+                        .HasColumnType("text");
+
+                    b.Property<bool?>("F_DeleteMark")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("F_DeleteTime")
+                        .HasColumnType("datetime");
+
+                    b.Property<string>("F_DeleteUserId")
+                        .HasColumnType("text");
+
+                    b.Property<string>("F_DeleteUserName")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime?>("F_LastModifyTime")
+                        .HasColumnType("datetime");
+
+                    b.Property<string>("F_LastModifyUserId")
+                        .HasColumnType("text");
+
+                    b.Property<string>("F_LastModifyUserName")
+                        .HasColumnType("text");
+
+                    b.Property<string>("F_Spokesman")
+                        .HasColumnType("text");
+
+                    b.Property<bool>("F_Status")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("F_Title")
+                        .HasColumnType("text");
+
+                    b.Property<int>("F_Type")
+                        .HasColumnType("int");
+
+                    b.HasKey("F_Id");
+
+                    b.ToTable("T_NewsInfo");
+                });
+
+            modelBuilder.Entity("NFine.Domain.Entity.SystemManage.sys_AreaEntity", b =>
                 {
                     b.Property<string>("F_Id")
                         .HasColumnType("varchar(767)");
@@ -83,7 +138,7 @@ namespace NFine.Data
                     b.ToTable("Sys_Area");
                 });
 
-            modelBuilder.Entity("NFine.Domain.Entity.SystemManage.ItemsDetailEntity", b =>
+            modelBuilder.Entity("NFine.Domain.Entity.SystemManage.sys_ItemsDetailEntity", b =>
                 {
                     b.Property<string>("F_Id")
                         .HasColumnType("varchar(767)");
@@ -153,7 +208,7 @@ namespace NFine.Data
                     b.ToTable("Sys_ItemsDetail");
                 });
 
-            modelBuilder.Entity("NFine.Domain.Entity.SystemManage.ItemsEntity", b =>
+            modelBuilder.Entity("NFine.Domain.Entity.SystemManage.sys_ItemsEntity", b =>
                 {
                     b.Property<string>("F_Id")
                         .HasColumnType("varchar(767)");
@@ -217,7 +272,7 @@ namespace NFine.Data
                     b.ToTable("Sys_Items");
                 });
 
-            modelBuilder.Entity("NFine.Domain.Entity.SystemManage.ModuleButtonEntity", b =>
+            modelBuilder.Entity("NFine.Domain.Entity.SystemManage.sys_ModuleButtonEntity", b =>
                 {
                     b.Property<string>("F_Id")
                         .HasColumnType("varchar(767)");
@@ -305,7 +360,7 @@ namespace NFine.Data
                     b.ToTable("Sys_ModuleButton");
                 });
 
-            modelBuilder.Entity("NFine.Domain.Entity.SystemManage.ModuleEntity", b =>
+            modelBuilder.Entity("NFine.Domain.Entity.SystemManage.sys_ModuleEntity", b =>
                 {
                     b.Property<string>("F_Id")
                         .HasColumnType("varchar(767)");
@@ -390,62 +445,7 @@ namespace NFine.Data
                     b.ToTable("Sys_Module");
                 });
 
-            modelBuilder.Entity("NFine.Domain.Entity.SystemManage.NewsInfoEntity", b =>
-                {
-                    b.Property<string>("F_Id")
-                        .HasColumnType("varchar(767)");
-
-                    b.Property<string>("F_Content")
-                        .HasColumnType("text");
-
-                    b.Property<DateTime?>("F_CreatorTime")
-                        .HasColumnType("datetime");
-
-                    b.Property<string>("F_CreatorUserId")
-                        .HasColumnType("text");
-
-                    b.Property<string>("F_CreatorUserName")
-                        .HasColumnType("text");
-
-                    b.Property<bool?>("F_DeleteMark")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("F_DeleteTime")
-                        .HasColumnType("datetime");
-
-                    b.Property<string>("F_DeleteUserId")
-                        .HasColumnType("text");
-
-                    b.Property<string>("F_DeleteUserName")
-                        .HasColumnType("text");
-
-                    b.Property<DateTime?>("F_LastModifyTime")
-                        .HasColumnType("datetime");
-
-                    b.Property<string>("F_LastModifyUserId")
-                        .HasColumnType("text");
-
-                    b.Property<string>("F_LastModifyUserName")
-                        .HasColumnType("text");
-
-                    b.Property<string>("F_Spokesman")
-                        .HasColumnType("text");
-
-                    b.Property<bool>("F_Status")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("F_Title")
-                        .HasColumnType("text");
-
-                    b.Property<int>("F_Type")
-                        .HasColumnType("int");
-
-                    b.HasKey("F_Id");
-
-                    b.ToTable("T_NewsInfo");
-                });
-
-            modelBuilder.Entity("NFine.Domain.Entity.SystemManage.OrganizeEntity", b =>
+            modelBuilder.Entity("NFine.Domain.Entity.SystemManage.sys_OrganizeEntity", b =>
                 {
                     b.Property<string>("F_Id")
                         .HasColumnType("varchar(767)");
@@ -542,7 +542,7 @@ namespace NFine.Data
                     b.ToTable("Sys_Organize");
                 });
 
-            modelBuilder.Entity("NFine.Domain.Entity.SystemManage.RoleAuthorizeEntity", b =>
+            modelBuilder.Entity("NFine.Domain.Entity.SystemManage.sys_RoleAuthorizeEntity", b =>
                 {
                     b.Property<string>("F_Id")
                         .HasColumnType("varchar(767)");
@@ -582,7 +582,7 @@ namespace NFine.Data
                     b.ToTable("Sys_RoleAuthorize");
                 });
 
-            modelBuilder.Entity("NFine.Domain.Entity.SystemManage.RoleEntity", b =>
+            modelBuilder.Entity("NFine.Domain.Entity.SystemManage.sys_RoleEntity", b =>
                 {
                     b.Property<string>("F_Id")
                         .HasColumnType("varchar(767)");
@@ -652,7 +652,7 @@ namespace NFine.Data
                     b.ToTable("Sys_Role");
                 });
 
-            modelBuilder.Entity("NFine.Domain.Entity.SystemManage.UserEntity", b =>
+            modelBuilder.Entity("NFine.Domain.Entity.SystemManage.sys_UserEntity", b =>
                 {
                     b.Property<string>("F_Id")
                         .HasColumnType("varchar(767)");
@@ -752,7 +752,7 @@ namespace NFine.Data
                     b.ToTable("Sys_User");
                 });
 
-            modelBuilder.Entity("NFine.Domain.Entity.SystemManage.UserLogOnEntity", b =>
+            modelBuilder.Entity("NFine.Domain.Entity.SystemManage.sys_UserLogOnEntity", b =>
                 {
                     b.Property<string>("F_Id")
                         .HasColumnType("varchar(767)");
@@ -944,7 +944,7 @@ namespace NFine.Data
                     b.ToTable("Sys_FilterIP");
                 });
 
-            modelBuilder.Entity("NFine.Domain.Entity.SystemSecurity.LogEntity", b =>
+            modelBuilder.Entity("NFine.Domain.Entity.SystemSecurity.sys_LogEntity", b =>
                 {
                     b.Property<string>("F_Id")
                         .HasColumnType("varchar(767)");

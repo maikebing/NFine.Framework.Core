@@ -58,10 +58,7 @@ namespace NFine.Web
             });
             services.AddDbContext<NFineDbContext>(optionsAction =>
             {
-                optionsAction.UseMySQL(Configuration.GetSection("connectionStrings:NFineDbContext").Value,b=>b.MigrationsAssembly("NFine.Data"));
-#if DEBUG
-                optionsAction.ConfigureWarnings(warningsConfigurationBuilderAction => warningsConfigurationBuilderAction.Throw(RelationalEventId.QueryClientEvaluationWarning));
-#endif
+                optionsAction.UseMySQL(Configuration.GetSection("connectionStrings:NFineDbContext").Value,b=> b.MigrationsAssembly(typeof(NFineDbContext).Assembly.GetName().Name));
             });
             services.AddScoped<IRepositoryBase, RepositoryBase>();
             #region 注入repositorybase类

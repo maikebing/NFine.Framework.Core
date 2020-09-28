@@ -1,9 +1,9 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace NFine.Data
+namespace NFine.Data.Migrations
 {
-    public partial class CreateDB : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -251,32 +251,6 @@ namespace NFine.Data
                 });
 
             migrationBuilder.CreateTable(
-                name: "T__NewsInfo",
-                columns: table => new
-                {
-                    F_Id = table.Column<string>(nullable: false),
-                    F_CreatorUserId = table.Column<string>(nullable: true),
-                    F_CreatorTime = table.Column<DateTime>(nullable: true),
-                    F_CreatorUserName = table.Column<string>(nullable: true),
-                    F_LastModifyUserId = table.Column<string>(nullable: true),
-                    F_LastModifyTime = table.Column<DateTime>(nullable: true),
-                    F_LastModifyUserName = table.Column<string>(nullable: true),
-                    F_DeleteMark = table.Column<bool>(nullable: true),
-                    F_DeleteUserId = table.Column<string>(nullable: true),
-                    F_DeleteTime = table.Column<DateTime>(nullable: true),
-                    F_DeleteUserName = table.Column<string>(nullable: true),
-                    F_Title = table.Column<string>(nullable: true),
-                    F_Spokesman = table.Column<string>(nullable: true),
-                    F_Content = table.Column<string>(nullable: true),
-                    F_Status = table.Column<bool>(nullable: false),
-                    F_Type = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_T_NewsInfo", x => x.F_Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Sys_Organize",
                 columns: table => new
                 {
@@ -438,6 +412,32 @@ namespace NFine.Data
                 {
                     table.PrimaryKey("PK_Sys_UserLogOn", x => x.F_Id);
                 });
+
+            migrationBuilder.CreateTable(
+                name: "T_NewsInfo",
+                columns: table => new
+                {
+                    F_Id = table.Column<string>(nullable: false),
+                    F_CreatorUserId = table.Column<string>(nullable: true),
+                    F_CreatorTime = table.Column<DateTime>(nullable: true),
+                    F_CreatorUserName = table.Column<string>(nullable: true),
+                    F_LastModifyUserId = table.Column<string>(nullable: true),
+                    F_LastModifyTime = table.Column<DateTime>(nullable: true),
+                    F_LastModifyUserName = table.Column<string>(nullable: true),
+                    F_DeleteMark = table.Column<bool>(nullable: true),
+                    F_DeleteUserId = table.Column<string>(nullable: true),
+                    F_DeleteTime = table.Column<DateTime>(nullable: true),
+                    F_DeleteUserName = table.Column<string>(nullable: true),
+                    F_Title = table.Column<string>(nullable: true),
+                    F_Spokesman = table.Column<string>(nullable: true),
+                    F_Content = table.Column<string>(nullable: true),
+                    F_Status = table.Column<bool>(nullable: false),
+                    F_Type = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_T_NewsInfo", x => x.F_Id);
+                });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -467,9 +467,6 @@ namespace NFine.Data
                 name: "Sys_ModuleButton");
 
             migrationBuilder.DropTable(
-                name: "T_NewsInfo");
-
-            migrationBuilder.DropTable(
                 name: "Sys_Organize");
 
             migrationBuilder.DropTable(
@@ -483,6 +480,9 @@ namespace NFine.Data
 
             migrationBuilder.DropTable(
                 name: "Sys_UserLogOn");
+
+            migrationBuilder.DropTable(
+                name: "T_NewsInfo");
         }
     }
 }
