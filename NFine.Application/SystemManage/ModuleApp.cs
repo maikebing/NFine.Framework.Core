@@ -16,14 +16,14 @@ namespace NFine.Application.SystemManage
         {
             this.service = moduleRepository;
         }
-        public List<ModuleEntity> GetList()
+        public List<sys_ModuleEntity> GetList()
         {
-            var expression = ExtLinq.True<ModuleEntity>();
+            var expression = ExtLinq.True<sys_ModuleEntity>();
             if (!HttpContext.Current.Request.Headers["Referer"].ToString().Contains("SystemManage/Module/Index"))
                 expression = expression.And(_ => _.F_EnabledMark == true);
             return service.IQueryable(expression).OrderBy(t => t.F_SortCode).ToList();
         }
-        public ModuleEntity GetForm(string keyValue)
+        public sys_ModuleEntity GetForm(string keyValue)
         {
             return service.FindEntity(keyValue);
         }
@@ -38,7 +38,7 @@ namespace NFine.Application.SystemManage
                 service.Delete(t => t.F_Id == keyValue);
             }
         }
-        public void SubmitForm(ModuleEntity moduleEntity, string keyValue)
+        public void SubmitForm(sys_ModuleEntity moduleEntity, string keyValue)
         {
             if (!string.IsNullOrEmpty(keyValue))
             {

@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace NFine.Mapping.SystemManage
 {
-    public class RoleAuthorizeMap : EntityTypeConfiguration<RoleAuthorizeEntity>
+    public class RoleAuthorizeMap : EntityTypeConfiguration<sys_RoleAuthorizeEntity>
     {
         //public RoleAuthorizeMap()
         //{
@@ -14,7 +14,7 @@ namespace NFine.Mapping.SystemManage
 
         public override void Map(ModelBuilder builder)
         {
-            builder.Entity<RoleAuthorizeEntity>().ToTable("Sys_RoleAuthorize").HasKey(_ => _.F_Id);
+            builder.Entity<sys_RoleAuthorizeEntity>().ToTable("Sys_RoleAuthorize").HasKey(_ => _.F_Id);
         }
     }
 }

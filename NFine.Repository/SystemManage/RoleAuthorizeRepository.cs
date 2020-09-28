@@ -5,7 +5,7 @@ using NFine.Repository.SystemManage;
 
 namespace NFine.Repository.SystemManage
 {
-    public class RoleAuthorizeRepository : RepositoryBase<RoleAuthorizeEntity>, IRoleAuthorizeRepository
+    public class RoleAuthorizeRepository : RepositoryBase<sys_RoleAuthorizeEntity>, IRoleAuthorizeRepository
     {
         public RoleAuthorizeRepository(NFineDbContext dbContext):base(dbContext)
         {

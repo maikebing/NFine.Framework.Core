@@ -7,7 +7,7 @@ using System;
 
 namespace NFine.Repository.SystemManage
 {
-    public class UserRepository : RepositoryBase<UserEntity>, IUserRepository
+    public class UserRepository : RepositoryBase<sys_UserEntity>, IUserRepository
     {
         private IRepositoryBase repositoryBase;
         public UserRepository(NFineDbContext dbContext, IRepositoryBase repositoryBase) : base(dbContext)
@@ -19,12 +19,12 @@ namespace NFine.Repository.SystemManage
         {
             using (var db = this.repositoryBase.BeginTrans())
             {
-                db.Delete<UserEntity>(t => t.F_Id == keyValue);
-                db.Delete<UserLogOnEntity>(t => t.F_UserId == keyValue);
+                db.Delete<sys_UserEntity>(t => t.F_Id == keyValue);
+                db.Delete<sys_UserLogOnEntity>(t => t.F_UserId == keyValue);
                 db.Commit();
             }
         }
-        public void SubmitForm(UserEntity userEntity, UserLogOnEntity userLogOnEntity, string keyValue)
+        public void SubmitForm(sys_UserEntity userEntity, sys_UserLogOnEntity userLogOnEntity, string keyValue)
         {
             using (var db = this.repositoryBase.BeginTrans())
             {
@@ -45,13 +45,13 @@ namespace NFine.Repository.SystemManage
             }
         }
 
-        public void ChangeUserPassword(UserLogOnEntity userLogOnEntity, string password)
+        public void ChangeUserPassword(sys_UserLogOnEntity userLogOnEntity, string password)
         {
             using (var db = this.repositoryBase)
             {
                 userLogOnEntity.F_UserPassword = EncryptProvider.Md5(password, Code.Internal.MD5Length.L32).ToLower();
                 userLogOnEntity.F_ChangePasswordDate = DateTime.Now;
-                db.Update<UserLogOnEntity>(userLogOnEntity);
+                db.Update<sys_UserLogOnEntity>(userLogOnEntity);
             }
         }
 

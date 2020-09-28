@@ -65,7 +65,7 @@ namespace NFine.Web.Controllers
             if (!userApp.ChangePassworld(OperatorProvider.Provider.GetCurrent().UserId, query.F_OldPawword, query.F_NewPawword))
                 return Error("原密码不正确");
 
-            logApp.WriteDbLog(new LogEntity
+            logApp.WriteDbLog(new sys_LogEntity
             {
                 F_ModuleName = "系统登录",
                 F_Type = DbLogType.Exit.ToString(),

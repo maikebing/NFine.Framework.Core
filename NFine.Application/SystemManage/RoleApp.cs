@@ -18,9 +18,9 @@ namespace NFine.Application.SystemManage
             this.moduleApp = moduleApp;
             this.moduleButtonApp = moduleButtonApp;
         }
-        public List<RoleEntity> GetList(string keyword = "")
+        public List<sys_RoleEntity> GetList(string keyword = "")
         {
-            var expression = ExtLinq.True<RoleEntity>();
+            var expression = ExtLinq.True<sys_RoleEntity>();
             if (!string.IsNullOrEmpty(keyword))
             {
                 expression = expression.And(t => t.F_FullName.Contains(keyword));
@@ -29,7 +29,7 @@ namespace NFine.Application.SystemManage
             expression = expression.And(t => t.F_Category == 1);
             return service.IQueryable(expression).OrderBy(t => t.F_SortCode).ToList();
         }
-        public RoleEntity GetForm(string keyValue)
+        public sys_RoleEntity GetForm(string keyValue)
         {
             return service.FindEntity(keyValue);
         }
@@ -37,7 +37,7 @@ namespace NFine.Application.SystemManage
         {
             service.DeleteForm(keyValue);
         }
-        public void SubmitForm(RoleEntity roleEntity, string[] permissionIds, string keyValue)
+        public void SubmitForm(sys_RoleEntity roleEntity, string[] permissionIds, string keyValue)
         {
             if (!string.IsNullOrEmpty(keyValue))
             {
@@ -50,11 +50,11 @@ namespace NFine.Application.SystemManage
             }
             var moduledata = moduleApp.GetList();
             var buttondata = moduleButtonApp.GetList();
-            List<RoleAuthorizeEntity> roleAuthorizeEntitys = new List<RoleAuthorizeEntity>();
+            List<sys_RoleAuthorizeEntity> roleAuthorizeEntitys = new List<sys_RoleAuthorizeEntity>();
             if (permissionIds?.Count() > 0)
                 foreach (var itemId in permissionIds)
                 {
-                    RoleAuthorizeEntity roleAuthorizeEntity = new RoleAuthorizeEntity();
+                    sys_RoleAuthorizeEntity roleAuthorizeEntity = new sys_RoleAuthorizeEntity();
                     roleAuthorizeEntity.F_Id = Common.GuId();
                     roleAuthorizeEntity.F_ObjectType = 1;
                     roleAuthorizeEntity.F_ObjectId = roleEntity.F_Id;

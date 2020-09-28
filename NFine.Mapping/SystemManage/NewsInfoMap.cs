@@ -6,12 +6,12 @@ using NFine.Domain.Entity.SystemManage;
 
 namespace NFine.Mapping.SystemManage
 {
-    public class NewsInfoMap:EntityTypeConfiguration<NewsInfoEntity>
+    public class NewsInfoMap:EntityTypeConfiguration<T_NewsInfoEntity>
     {
         public override void Map(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<NewsInfoEntity>().ToTable("Sys_NewsInfo").HasKey(_ => _.F_Id);
-            modelBuilder.Entity<NewsInfoEntity>().HasQueryFilter(_ => _.F_DeleteMark != true);
+            modelBuilder.Entity<T_NewsInfoEntity>().ToTable("Sys_NewsInfo").HasKey(_ => _.F_Id);
+            modelBuilder.Entity<T_NewsInfoEntity>().HasQueryFilter(_ => _.F_DeleteMark != true);
         }
     }
 }

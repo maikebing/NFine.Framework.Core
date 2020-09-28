@@ -2,7 +2,7 @@
 
 namespace NFine.Domain.Entity.SystemManage
 {
-    public class ModuleEntity : IEntity<ModuleEntity>, ICreationAudited, IModificationAudited, IDeleteAudited
+    public class sys_ModuleEntity : IEntity<sys_ModuleEntity>, ICreationAudited, IModificationAudited, IDeleteAudited
     {
         public string F_Id { get; set; }
         public string F_ParentId { get; set; }

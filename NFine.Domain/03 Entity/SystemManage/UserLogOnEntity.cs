@@ -2,7 +2,7 @@
 
 namespace NFine.Domain.Entity.SystemManage
 {
-    public class UserLogOnEntity
+    public class sys_UserLogOnEntity
     {
         public string F_Id { get; set; }
         public string F_UserId { get; set; }

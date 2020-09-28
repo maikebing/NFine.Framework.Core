@@ -21,7 +21,7 @@ namespace NFine.Web.Areas.SystemManage.Controllers
         {
             var data = areaApp.GetList();
             var treeList = new List<TreeSelectModel>();
-            foreach (AreaEntity item in data)
+            foreach (sys_AreaEntity item in data)
             {
                 TreeSelectModel treeModel = new TreeSelectModel();
                 treeModel.id = item.F_Id;
@@ -37,7 +37,7 @@ namespace NFine.Web.Areas.SystemManage.Controllers
         {
             var data = areaApp.GetList();
             var treeList = new List<TreeGridModel>();
-            foreach (AreaEntity item in data)
+            foreach (sys_AreaEntity item in data)
             {
                 TreeGridModel treeModel = new TreeGridModel();
                 bool hasChildren = data.Count(t => t.F_ParentId == item.F_Id) == 0 ? false : true;
@@ -65,7 +65,7 @@ namespace NFine.Web.Areas.SystemManage.Controllers
         [HttpPost]
         //[HandlerAjaxOnly]
         [ValidateAntiForgeryToken]
-        public ActionResult SubmitForm(AreaEntity areaEntity, string keyValue)
+        public ActionResult SubmitForm(sys_AreaEntity areaEntity, string keyValue)
         {
             areaApp.SubmitForm(areaEntity, keyValue);
             return Success("操作成功。");

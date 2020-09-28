@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace NFine.Mapping.SystemManage
 {
-    public class RoleMap : EntityTypeConfiguration<RoleEntity>
+    public class RoleMap : EntityTypeConfiguration<sys_RoleEntity>
     {
         //public RoleMap()
         //{
@@ -14,8 +14,8 @@ namespace NFine.Mapping.SystemManage
 
         public override void Map(ModelBuilder builder)
         {
-            builder.Entity<RoleEntity>().ToTable("Sys_Role").HasKey(_ => _.F_Id);
-            builder.Entity<RoleEntity>().HasQueryFilter(_ => _.F_DeleteMark != true);
+            builder.Entity<sys_RoleEntity>().ToTable("Sys_Role").HasKey(_ => _.F_Id);
+            builder.Entity<sys_RoleEntity>().HasQueryFilter(_ => _.F_DeleteMark != true);
         }
 
     }

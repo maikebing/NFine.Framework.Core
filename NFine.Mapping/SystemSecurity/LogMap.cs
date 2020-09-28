@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace NFine.Mapping.SystemSecurity
 {
-    public class LogMap : EntityTypeConfiguration<LogEntity>
+    public class LogMap : EntityTypeConfiguration<sys_LogEntity>
     {
         //public LogMap()
         //{
@@ -14,7 +14,7 @@ namespace NFine.Mapping.SystemSecurity
 
         public override void Map(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<LogEntity>().ToTable("Sys_Log").HasKey(_ => _.F_Id);
+            modelBuilder.Entity<sys_LogEntity>().ToTable("Sys_Log").HasKey(_ => _.F_Id);
         }
     }
 }

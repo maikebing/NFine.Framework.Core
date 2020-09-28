@@ -38,7 +38,7 @@ namespace NFine.Web.Areas.SystemManage.Controllers
         [HttpPost]
         //[HandlerAjaxOnly]
         [ValidateAntiForgeryToken]
-        public ActionResult SubmitForm(RoleEntity roleEntity, string permissionIds, string keyValue)
+        public ActionResult SubmitForm(sys_RoleEntity roleEntity, string permissionIds, string keyValue)
         {
             roleApp.SubmitForm(roleEntity, permissionIds?.Split(','), keyValue);
             return Success("操作成功。");
