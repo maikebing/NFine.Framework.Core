@@ -1,27 +1,27 @@
-FROM lind/aspnetcore:2.0
-#FROM microsoft/aspnetcore
-#ARG source
+#See https://aka.ms/containerfastmode to understand how Visual Studio uses this Dockerfile to build your images for faster debugging.
 
-#RUN apt-get update
-#RUN apt-get install libgdiplus
-#RUN mkdir  /usr/src/app
-
-#COPY -R ../NFine.Application /publish/NFine.Application 
-#COPY -R ../NFine.Core /publish/NFine.Core
-#COPY -R ../NFine.Data /publish/NFine.Data
-#COPY -R ../NFine.Domain /publish/NFine.Domain
-#COPY -R ../NFine.Mapping /publish/NFine.Mapping
-#COPY -R ../NFine.Repository /publish/NFine.Repository
-#COPY -R ../NFine.Web /publish/NFine.Web
-#COPY ../NFine.Framework.Core.sln /publish
-COPY publish /publish
-
-WORKDIR /publish
-
+FROM mcr.microsoft.com/dotnet/core/aspnet:3.1-buster-slim AS base
+WORKDIR /app
 EXPOSE 80
 
-#CMD ["dotnet","clean"]
+FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS build
+WORKDIR /src
+COPY ["NFine.Web/NFine.Web.csproj", "NFine.Web/"]
+COPY ["NFine.Application/NFine.Application.csproj", "NFine.Application/"]
+COPY ["NFine.Repository/NFine.Repository.csproj", "NFine.Repository/"]
+COPY ["NFine.Domain/NFine.Domain.csproj", "NFine.Domain/"]
+COPY ["NFine.Core/NFine.Code.csproj", "NFine.Core/"]
+COPY ["NFine.Data/NFine.Data.csproj", "NFine.Data/"]
+COPY ["NFine.Mapping/NFine.Mapping.csproj", "NFine.Mapping/"]
+RUN dotnet restore "NFine.Web/NFine.Web.csproj"
+COPY . .
+WORKDIR "/src/NFine.Web"
+RUN dotnet build "NFine.Web.csproj" -c Release -o /app/build
 
-#CMD ["dotnet", "publish","-c","Release","-o","publish"]
+FROM build AS publish
+RUN dotnet publish "NFine.Web.csproj" -c Release -o /app/publish
 
-CMD ["dotnet", "NFine.Web.dll"]
+FROM base AS final
+WORKDIR /app
+COPY --from=publish /app/publish .
+ENTRYPOINT ["dotnet", "NFine.Web.dll"]

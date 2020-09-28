@@ -25,7 +25,7 @@ namespace NFine.Application.SystemManage
             UserLogOnEntity userLogOnEntity = new UserLogOnEntity();
             userLogOnEntity.F_Id = keyValue;
             userLogOnEntity.F_UserSecretkey = EncryptProvider.CreateDesKey();
-            userLogOnEntity.F_UserPassword = EncryptProvider.Md5(EncryptProvider.DESEncrypt(userPassword.ToLower(), userLogOnEntity.F_UserSecretkey).ToLower(), Code.Internal.MD5Length.L32).ToLower();
+            userLogOnEntity.F_UserPassword = EncryptProvider.Md5(EncryptProvider.DESEncrypt(userPassword.ToLower(), userLogOnEntity.F_UserSecretkey.PadRight(24)).ToLower(), Code.Internal.MD5Length.L32).ToLower();
             service.Update(userLogOnEntity);
         }
     }

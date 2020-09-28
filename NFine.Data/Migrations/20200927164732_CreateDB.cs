@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace NFine.Web.Migrations
+namespace NFine.Data
 {
     public partial class CreateDB : Migration
     {

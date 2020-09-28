@@ -37,7 +37,7 @@ namespace NFine.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            IMvcBuilder mvcBuilder = services.AddMvc();
+            IMvcBuilder mvcBuilder = services.AddMvc(mvc=>mvc.EnableEndpointRouting=false);
             services.AddSingleton<Microsoft.AspNetCore.Http.IHttpContextAccessor, Microsoft.AspNetCore.Http.HttpContextAccessor>();
             services.AddSession(options =>
             {
@@ -58,7 +58,7 @@ namespace NFine.Web
             });
             services.AddDbContext<NFineDbContext>(optionsAction =>
             {
-                optionsAction.UseMySQL(Configuration.GetSection("connectionStrings:NFineDbContext").Value,b=>b.MigrationsAssembly("NFine.Data").MigrationsAssembly("NFine.Web"));
+                optionsAction.UseMySQL(Configuration.GetSection("connectionStrings:NFineDbContext").Value,b=>b.MigrationsAssembly("NFine.Data"));
 #if DEBUG
                 optionsAction.ConfigureWarnings(warningsConfigurationBuilderAction => warningsConfigurationBuilderAction.Throw(RelationalEventId.QueryClientEvaluationWarning));
 #endif
@@ -113,31 +113,29 @@ namespace NFine.Web
 
             app.UseStaticFiles();
 
-            app.UseRouting();
-            app.UseAuthorization();
-            app.UseEndpoints(routes =>
+            app.UseAuthentication();
+            
+            app.UseMvc(routes =>
             {
-                routes.MapRazorPages();
-                routes.MapControllers();
-                routes.MapControllerRoute(
+                routes.MapRoute(
                     name: "default",
-                     pattern : "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=Home}/{action=Index}/{id?}");
 
-                routes.MapControllerRoute(
+                routes.MapRoute(
                     name: "ExampleManage",
-                    pattern: "ExampleManage/{controller}/{action=Index}/{id?}");
+                    template: "ExampleManage/{controller}/{action=Index}/{id?}");
 
-                routes.MapControllerRoute(
+                routes.MapRoute(
                     name: "ReportManage",
-                    pattern: "ReportManage/{controller}/{action=Index}/{id?}");
+                    template: "ReportManage/{controller}/{action=Index}/{id?}");
 
-                routes.MapControllerRoute(
+                routes.MapRoute(
                   name: "SystemManage",
-                  pattern: "SystemManage/{controller}/{action=Index}/{id?}");
+                  template: "SystemManage/{controller}/{action=Index}/{id?}");
 
-                routes.MapControllerRoute(
+                routes.MapRoute(
                  name: "SystemSecurity",
-                 pattern: "SystemSecurity/{controller}/{action=Index}/{id?}");
+                 template: "SystemSecurity/{controller}/{action=Index}/{id?}");
             });
         }
     }

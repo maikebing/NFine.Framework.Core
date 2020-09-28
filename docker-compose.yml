@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  nfine.web:
+    image: ${DOCKER_REGISTRY-}nfineweb
+    build:
+      context: .
+      dockerfile: NFine.Web/Dockerfile

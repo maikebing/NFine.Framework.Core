@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NFine.Data;
 
-namespace NFine.Web.Migrations
+namespace NFine.Data
 {
     [DbContext(typeof(NFineDbContext))]
     [Migration("20200927164732_CreateDB")]
