@@ -169,10 +169,7 @@ namespace NFine.Code
         {
             get
             {
-
-                if (HttpContext.Current == null)
-                    return string.Empty;
-                return HttpContext.Current.Request.Headers["User-Agent"].ToString();
+                return HttpContext.Current?.Request.Headers["User-Agent"].ToString();
             }
         }
         #endregion
