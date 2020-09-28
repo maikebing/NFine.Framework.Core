@@ -5,7 +5,7 @@ using NFine.Repository.SystemManage;
 
 namespace NFine.Repository.SystemManage
 {
-    public class ItemsRepository : RepositoryBase<ItemsEntity>, IItemsRepository
+    public class ItemsRepository : RepositoryBase<sys_ItemsEntity>, IItemsRepository
     {
         public ItemsRepository(NFineDbContext dbContext) : base(dbContext)
         {

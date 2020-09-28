@@ -251,7 +251,7 @@ namespace NFine.Data
                 });
 
             migrationBuilder.CreateTable(
-                name: "Sys_NewsInfo",
+                name: "T__NewsInfo",
                 columns: table => new
                 {
                     F_Id = table.Column<string>(nullable: false),
@@ -273,7 +273,7 @@ namespace NFine.Data
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Sys_NewsInfo", x => x.F_Id);
+                    table.PrimaryKey("PK_T_NewsInfo", x => x.F_Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -467,7 +467,7 @@ namespace NFine.Data
                 name: "Sys_ModuleButton");
 
             migrationBuilder.DropTable(
-                name: "Sys_NewsInfo");
+                name: "T_NewsInfo");
 
             migrationBuilder.DropTable(
                 name: "Sys_Organize");

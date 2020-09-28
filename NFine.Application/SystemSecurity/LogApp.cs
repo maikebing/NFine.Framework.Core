@@ -15,9 +15,9 @@ namespace NFine.Application.SystemSecurity
             this.service = logRepository;
         }
 
-        public List<LogEntity> GetList(Pagination pagination, string queryJson)
+        public List<sys_LogEntity> GetList(Pagination pagination, string queryJson)
         {
-            var expression = ExtLinq.True<LogEntity>();
+            var expression = ExtLinq.True<sys_LogEntity>();
             var queryParam = queryJson.ToJObject();
             if (!queryParam["keyword"].IsEmpty())
             {
@@ -64,13 +64,13 @@ namespace NFine.Application.SystemSecurity
             {
                 operateTime = DateTime.Now.AddMonths(-3);
             }
-            var expression = ExtLinq.True<LogEntity>();
+            var expression = ExtLinq.True<sys_LogEntity>();
             expression = expression.And(t => t.F_Date <= operateTime);
             service.Delete(expression);
         }
         public void WriteDbLog(bool result, string resultLog)
         {
-            LogEntity logEntity = new LogEntity();
+            sys_LogEntity logEntity = new sys_LogEntity();
             logEntity.F_Id = Common.GuId();
             logEntity.F_Date = DateTime.Now;
             logEntity.F_Account = OperatorProvider.Provider.GetCurrent().UserCode;
@@ -82,7 +82,7 @@ namespace NFine.Application.SystemSecurity
             logEntity.Create();
             service.Insert(logEntity);
         }
-        public void WriteDbLog(LogEntity logEntity)
+        public void WriteDbLog(sys_LogEntity logEntity)
         {
             logEntity.F_Id = Common.GuId();
             logEntity.F_Date = DateTime.Now;

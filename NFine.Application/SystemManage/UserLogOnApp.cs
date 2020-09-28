@@ -12,17 +12,17 @@ namespace NFine.Application.SystemManage
         {
             this.service = userLogOnRepository;
         }
-        public UserLogOnEntity GetForm(string keyValue)
+        public sys_UserLogOnEntity GetForm(string keyValue)
         {
             return service.FindEntity(keyValue);
         }
-        public void UpdateForm(UserLogOnEntity userLogOnEntity)
+        public void UpdateForm(sys_UserLogOnEntity userLogOnEntity)
         {
             service.Update(userLogOnEntity);
         }
         public void RevisePassword(string userPassword,string keyValue)
         {
-            UserLogOnEntity userLogOnEntity = new UserLogOnEntity();
+            sys_UserLogOnEntity userLogOnEntity = new sys_UserLogOnEntity();
             userLogOnEntity.F_Id = keyValue;
             userLogOnEntity.F_UserSecretkey = EncryptProvider.CreateDesKey();
             userLogOnEntity.F_UserPassword = EncryptProvider.Md5(EncryptProvider.DESEncrypt(userPassword.ToLower(), userLogOnEntity.F_UserSecretkey.PadRight(24)).ToLower(), Code.Internal.MD5Length.L32).ToLower();

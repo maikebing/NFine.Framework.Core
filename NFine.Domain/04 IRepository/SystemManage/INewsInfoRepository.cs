@@ -6,7 +6,7 @@ using NFine.Domain.Entity.SystemManage;
 
 namespace NFine.Domain.IRepository.SystemManage
 {
-   public interface INewsInfoRepository:IRepositoryBase<NewsInfoEntity>
+   public interface INewsInfoRepository:IRepositoryBase<T_NewsInfoEntity>
     {
     }
 }

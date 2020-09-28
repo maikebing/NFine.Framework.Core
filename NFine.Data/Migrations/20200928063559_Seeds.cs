@@ -972,7 +972,7 @@ INSERT  Sys_Area (`F_Id`, `F_ParentId`, `F_Layers`, `F_EnCode`, `F_FullName`, `F
 
             migrationBuilder.Sql("Sys_ModuleButton");
 
-            migrationBuilder.Sql("Sys_NewsInfo");
+            migrationBuilder.Sql("T_NewsInfo");
 
             migrationBuilder.Sql("Sys_Organize");
 

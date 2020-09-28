@@ -11,14 +11,14 @@ using MySql.Data.MySqlClient;
 
 namespace NFine.Repository.SystemManage
 {
-    public class ItemsDetailRepository : RepositoryBase<ItemsDetailEntity>, IItemsDetailRepository
+    public class ItemsDetailRepository : RepositoryBase<sys_ItemsDetailEntity>, IItemsDetailRepository
     {
         public ItemsDetailRepository(NFineDbContext dbContext):base(dbContext)
         {
 
         }
 
-        public List<ItemsDetailEntity> GetItemList(string enCode)
+        public List<sys_ItemsDetailEntity> GetItemList(string enCode)
         {
             StringBuilder strSql = new StringBuilder();
             strSql.Append(@"SELECT  d.*

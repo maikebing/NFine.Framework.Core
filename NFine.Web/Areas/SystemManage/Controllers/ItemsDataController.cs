@@ -38,7 +38,7 @@ namespace NFine.Web.Areas.SystemManage.Controllers
         {
             var data = itemsDetailApp.GetItemList(enCode);
             List<object> list = new List<object>();
-            foreach (ItemsDetailEntity item in data)
+            foreach (sys_ItemsDetailEntity item in data)
             {
                 list.Add(new { id = item.F_ItemCode, text = item.F_ItemName });
             }
@@ -54,7 +54,7 @@ namespace NFine.Web.Areas.SystemManage.Controllers
         [HttpPost]
         //[HandlerAjaxOnly]
         [ValidateAntiForgeryToken]
-        public ActionResult SubmitForm(ItemsDetailEntity itemsDetailEntity, string keyValue)
+        public ActionResult SubmitForm(sys_ItemsDetailEntity itemsDetailEntity, string keyValue)
         {
             itemsDetailApp.SubmitForm(itemsDetailEntity, keyValue);
             return Success("操作成功。");

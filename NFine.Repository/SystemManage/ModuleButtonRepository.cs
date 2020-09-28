@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace NFine.Repository.SystemManage
 {
-    public class ModuleButtonRepository : RepositoryBase<ModuleButtonEntity>, IModuleButtonRepository
+    public class ModuleButtonRepository : RepositoryBase<sys_ModuleButtonEntity>, IModuleButtonRepository
     {
         private IRepositoryBase repositoryBase;
         public ModuleButtonRepository(NFineDbContext dbContext,IRepositoryBase repositoryBase):base(dbContext)
@@ -14,7 +14,7 @@ namespace NFine.Repository.SystemManage
             this.repositoryBase = repositoryBase;
         }
 
-        public void SubmitCloneButton(List<ModuleButtonEntity> entitys)
+        public void SubmitCloneButton(List<sys_ModuleButtonEntity> entitys)
         {
             using (var db = repositoryBase.BeginTrans())
             {

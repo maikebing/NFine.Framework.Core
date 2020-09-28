@@ -14,11 +14,11 @@ namespace NFine.Application.SystemManage
         {
             this.service = itemsRepository;
         }
-        public List<ItemsEntity> GetList()
+        public List<sys_ItemsEntity> GetList()
         {
             return service.IQueryable().ToList();
         }
-        public ItemsEntity GetForm(string keyValue)
+        public sys_ItemsEntity GetForm(string keyValue)
         {
             return service.FindEntity(keyValue);
         }
@@ -33,7 +33,7 @@ namespace NFine.Application.SystemManage
                 service.Delete(t => t.F_Id == keyValue);
             }
         }
-        public void SubmitForm(ItemsEntity itemsEntity, string keyValue)
+        public void SubmitForm(sys_ItemsEntity itemsEntity, string keyValue)
         {
             if (!string.IsNullOrEmpty(keyValue))
             {

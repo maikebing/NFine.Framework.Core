@@ -3,7 +3,7 @@ using NFine.Domain.Entity.SystemSecurity;
 
 namespace NFine.Domain.IRepository.SystemSecurity
 {
-    public interface ILogRepository : IRepositoryBase<LogEntity>
+    public interface ILogRepository : IRepositoryBase<sys_LogEntity>
     {
         
     }

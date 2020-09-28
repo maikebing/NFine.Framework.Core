@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace NFine.Repository.SystemManage
 {
-    public class RoleRepository : RepositoryBase<RoleEntity>, IRoleRepository
+    public class RoleRepository : RepositoryBase<sys_RoleEntity>, IRoleRepository
     {
         private IRepositoryBase repositoryBase;
         public RoleRepository(NFineDbContext dbContext, IRepositoryBase repositoryBase):base(dbContext)
@@ -18,12 +18,12 @@ namespace NFine.Repository.SystemManage
         {
             using (var db = this.repositoryBase.BeginTrans())
             {
-                db.Delete<RoleEntity>(t => t.F_Id == keyValue);
-                db.Delete<RoleAuthorizeEntity>(t => t.F_ObjectId == keyValue);
+                db.Delete<sys_RoleEntity>(t => t.F_Id == keyValue);
+                db.Delete<sys_RoleAuthorizeEntity>(t => t.F_ObjectId == keyValue);
                 db.Commit();
             }
         }
-        public void SubmitForm(RoleEntity roleEntity, List<RoleAuthorizeEntity> roleAuthorizeEntitys, string keyValue)
+        public void SubmitForm(sys_RoleEntity roleEntity, List<sys_RoleAuthorizeEntity> roleAuthorizeEntitys, string keyValue)
         {
             using (var db = this.repositoryBase.BeginTrans())
             {
@@ -36,7 +36,7 @@ namespace NFine.Repository.SystemManage
                     roleEntity.F_Category = 1;
                     db.Insert(roleEntity);
                 }
-                db.Delete<RoleAuthorizeEntity>(t => t.F_ObjectId == roleEntity.F_Id);
+                db.Delete<sys_RoleAuthorizeEntity>(t => t.F_ObjectId == roleEntity.F_Id);
                 if (roleAuthorizeEntitys?.Count > 0)
                     db.Insert(roleAuthorizeEntitys);
                 db.Commit();

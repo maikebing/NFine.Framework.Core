@@ -5,7 +5,7 @@ using NFine.Repository.SystemManage;
 
 namespace NFine.Repository.SystemManage
 {
-    public class AreaRepository : RepositoryBase<AreaEntity>, IAreaRepository
+    public class AreaRepository : RepositoryBase<sys_AreaEntity>, IAreaRepository
     {
         public AreaRepository(NFineDbContext dbContext) : base(dbContext)
         {

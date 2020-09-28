@@ -3,7 +3,7 @@ using NFine.Domain.Entity.SystemManage;
 
 namespace NFine.Domain.IRepository.SystemManage
 {
-    public interface IUserLogOnRepository : IRepositoryBase<UserLogOnEntity>
+    public interface IUserLogOnRepository : IRepositoryBase<sys_UserLogOnEntity>
     {
     }
 }

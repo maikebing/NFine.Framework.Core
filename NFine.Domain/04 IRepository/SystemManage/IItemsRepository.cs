@@ -3,7 +3,7 @@ using NFine.Domain.Entity.SystemManage;
 
 namespace NFine.Domain.IRepository.SystemManage
 {
-    public interface IItemsRepository : IRepositoryBase<ItemsEntity>
+    public interface IItemsRepository : IRepositoryBase<sys_ItemsEntity>
     {
     }
 }

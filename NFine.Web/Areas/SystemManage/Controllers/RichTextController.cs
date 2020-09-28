@@ -29,7 +29,7 @@ namespace NFine.Web.Areas.SystemManage.Controllers
         }
 
        
-        public IActionResult SubmitForm(NewsInfoEntity newsInfoEntity,string keyValue)
+        public IActionResult SubmitForm(T_NewsInfoEntity newsInfoEntity,string keyValue)
         {
             app.SubmitForm(newsInfoEntity, keyValue);
             return Content(new AjaxResult { state = ResultType.success.ToString(), message = "操作成功。" }.ToJson());

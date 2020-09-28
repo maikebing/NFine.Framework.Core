@@ -2,7 +2,7 @@
 
 namespace NFine.Domain.Entity.SystemSecurity
 {
-    public class LogEntity : IEntity<LogEntity>, ICreationAudited
+    public class sys_LogEntity : IEntity<sys_LogEntity>, ICreationAudited
     {
         public string F_Id { get; set; }
         public DateTime? F_Date { get; set; }
@@ -18,7 +18,7 @@ namespace NFine.Domain.Entity.SystemSecurity
         public DateTime? F_CreatorTime { get; set; }
         public string F_CreatorUserId { get; set; }
 
-        public string F_CreatorUserName { get; set; }
+       public string F_CreatorUserName { get; set; }
 
       
     }

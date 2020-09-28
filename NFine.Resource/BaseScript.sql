@@ -395,14 +395,14 @@ CREATE TABLE [dbo].[Sys_ModuleFormInstance](
 GO
 SET ANSI_PADDING OFF
 GO
-/****** Object:  Table [dbo].[Sys_NewsInfo]    Script Date: 2019/5/16 9:56:39 ******/
+/****** Object:  Table [dbo].[T_NewsInfo]    Script Date: 2019/5/16 9:56:39 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 SET ANSI_PADDING ON
 GO
-CREATE TABLE [dbo].[Sys_NewsInfo](
+CREATE TABLE [dbo].[T_NewsInfo](
 	[F_Id] [varchar](50) NOT NULL,
 	[F_CreatorUserId] [varchar](50) NOT NULL,
 	[F_CreatorTime] [datetime] NOT NULL,
@@ -2599,11 +2599,11 @@ ALTER TABLE [dbo].[Sys_ModuleForm] ADD  DEFAULT ('超级管理员') FOR [F_CreatorUse
 GO
 ALTER TABLE [dbo].[Sys_ModuleFormInstance] ADD  DEFAULT ('超级管理员') FOR [F_CreatorUserName]
 GO
-ALTER TABLE [dbo].[Sys_NewsInfo] ADD  DEFAULT ((0)) FOR [F_DeleteMark]
+ALTER TABLE [dbo].[T_NewsInfo] ADD  DEFAULT ((0)) FOR [F_DeleteMark]
 GO
-ALTER TABLE [dbo].[Sys_NewsInfo] ADD  DEFAULT ((0)) FOR [F_Status]
+ALTER TABLE [dbo].[T_NewsInfo] ADD  DEFAULT ((0)) FOR [F_Status]
 GO
-ALTER TABLE [dbo].[Sys_NewsInfo] ADD  DEFAULT ((1)) FOR [F_Type]
+ALTER TABLE [dbo].[T_NewsInfo] ADD  DEFAULT ((1)) FOR [F_Type]
 GO
 EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'主键' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Sys_Area', @level2type=N'COLUMN',@level2name=N'F_Id'
 GO

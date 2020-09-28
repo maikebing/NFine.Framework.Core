@@ -15,9 +15,9 @@ namespace NFine.Application.SystemManage
             this.service = roleRepository;
         }
 
-        public List<RoleEntity> GetList(string keyword = "")
+        public List<sys_RoleEntity> GetList(string keyword = "")
         {
-            var expression = ExtLinq.True<RoleEntity>();
+            var expression = ExtLinq.True<sys_RoleEntity>();
             if (!string.IsNullOrEmpty(keyword))
             {
                 expression = expression.And(t => t.F_FullName.Contains(keyword));
@@ -26,7 +26,7 @@ namespace NFine.Application.SystemManage
             expression = expression.And(t => t.F_Category == 2);
             return service.IQueryable(expression).OrderBy(t => t.F_SortCode).ToList();
         }
-        public RoleEntity GetForm(string keyValue)
+        public sys_RoleEntity GetForm(string keyValue)
         {
             return service.FindEntity(keyValue);
         }
@@ -34,7 +34,7 @@ namespace NFine.Application.SystemManage
         {
             service.Delete(t => t.F_Id == keyValue);
         }
-        public void SubmitForm(RoleEntity roleEntity, string keyValue)
+        public void SubmitForm(sys_RoleEntity roleEntity, string keyValue)
         {
             if (!string.IsNullOrEmpty(keyValue))
             {

@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace NFine.Mapping.SystemManage
 {
-    public class ItemsMap : EntityTypeConfiguration<ItemsEntity>
+    public class ItemsMap : EntityTypeConfiguration<sys_ItemsEntity>
     {
         //public ItemsMap()
         //{
@@ -13,8 +13,8 @@ namespace NFine.Mapping.SystemManage
         //}
         public override void Map(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<ItemsEntity>().ToTable("Sys_Items").HasKey(_ => _.F_Id);
-            modelBuilder.Entity<ItemsEntity>().HasQueryFilter(_ => _.F_DeleteMark != true);
+            modelBuilder.Entity<sys_ItemsEntity>().ToTable("Sys_Items").HasKey(_ => _.F_Id);
+            modelBuilder.Entity<sys_ItemsEntity>().HasQueryFilter(_ => _.F_DeleteMark != true);
         }
     }
 }

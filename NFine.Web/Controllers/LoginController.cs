@@ -36,7 +36,7 @@ namespace NFine.Web.Controllers
         [HttpPost]
         public async Task<ActionResult> CheckLogin(string username, string password, string code)
         {
-            LogEntity logEntity = new LogEntity();
+            sys_LogEntity logEntity = new sys_LogEntity();
             logEntity.F_ModuleName = "系统登录";
             logEntity.F_Type = DbLogType.Login.ToString();
             try
@@ -46,7 +46,7 @@ namespace NFine.Web.Controllers
                     throw new Exception("验证码错误，请重新输入");
                 }
 
-                UserEntity userEntity = userApp.CheckLogin(username, password);
+                sys_UserEntity userEntity = userApp.CheckLogin(username, password);
                 if (userEntity != null)
                 {
                     OperatorModel operatorModel = new OperatorModel();
@@ -96,7 +96,7 @@ namespace NFine.Web.Controllers
         [HttpGet]
         public async Task<ActionResult> OutLogin()
         {
-            logApp.WriteDbLog(new LogEntity
+            logApp.WriteDbLog(new sys_LogEntity
             {
                 F_ModuleName = "系统登录",
                 F_Type = DbLogType.Exit.ToString(),

@@ -16,9 +16,9 @@ namespace NFine.Application.SystemManage
             this.service = itemsDetailRepository;
             this.itemsService = itemsRepository;
         }
-        public List<ItemsDetailEntity> GetList(string itemId = "", string keyword = "")
+        public List<sys_ItemsDetailEntity> GetList(string itemId = "", string keyword = "")
         {
-            var expression = ExtLinq.True<ItemsDetailEntity>();
+            var expression = ExtLinq.True<sys_ItemsDetailEntity>();
             if (!string.IsNullOrEmpty(itemId))
             {
                 expression = expression.And(t => t.F_ItemId == itemId);
@@ -31,9 +31,9 @@ namespace NFine.Application.SystemManage
             return service.IQueryable(expression).OrderBy(t => t.F_SortCode).ToList();
         }
 
-        public List<ItemsDetailEntity> GetListEnCode(string enCode)
+        public List<sys_ItemsDetailEntity> GetListEnCode(string enCode)
         {
-            var expression = ExtLinq.True<ItemsDetailEntity>();
+            var expression = ExtLinq.True<sys_ItemsDetailEntity>();
             var parentEntity = itemsService.FindEntity(_ => _.F_EnCode == enCode);
             if (parentEntity != null)
             {
@@ -43,11 +43,11 @@ namespace NFine.Application.SystemManage
                 return null;
         }
 
-        public List<ItemsDetailEntity> GetItemList(string enCode)
+        public List<sys_ItemsDetailEntity> GetItemList(string enCode)
         {
             return service.GetItemList(enCode);
         }
-        public ItemsDetailEntity GetForm(string keyValue)
+        public sys_ItemsDetailEntity GetForm(string keyValue)
         {
             return service.FindEntity(keyValue);
         }
@@ -55,7 +55,7 @@ namespace NFine.Application.SystemManage
         {
             service.Delete(t => t.F_Id == keyValue);
         }
-        public void SubmitForm(ItemsDetailEntity itemsDetailEntity, string keyValue)
+        public void SubmitForm(sys_ItemsDetailEntity itemsDetailEntity, string keyValue)
         {
             if (!string.IsNullOrEmpty(keyValue))
             {

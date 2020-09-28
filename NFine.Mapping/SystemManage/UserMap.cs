@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace NFine.Mapping.SystemManage
 {
-    public class UserMap : EntityTypeConfiguration<UserEntity>
+    public class UserMap : EntityTypeConfiguration<sys_UserEntity>
     {
         //public UserMap()
         //{
@@ -19,8 +19,8 @@ namespace NFine.Mapping.SystemManage
 
         public override void Map(ModelBuilder builder)
         {
-            builder.Entity<UserEntity>().ToTable("Sys_User").HasKey(_ => _.F_Id);
-            builder.Entity<UserEntity>().HasQueryFilter(_ => _.F_DeleteMark != true);
+            builder.Entity<sys_UserEntity>().ToTable("Sys_User").HasKey(_ => _.F_Id);
+            builder.Entity<sys_UserEntity>().HasQueryFilter(_ => _.F_DeleteMark != true);
         }
     }
 }

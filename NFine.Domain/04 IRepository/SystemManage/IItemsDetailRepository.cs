@@ -4,8 +4,8 @@ using System.Collections.Generic;
 
 namespace NFine.Domain.IRepository.SystemManage
 {
-    public interface IItemsDetailRepository : IRepositoryBase<ItemsDetailEntity>
+    public interface IItemsDetailRepository : IRepositoryBase<sys_ItemsDetailEntity>
     {
-        List<ItemsDetailEntity> GetItemList(string enCode);
+        List<sys_ItemsDetailEntity> GetItemList(string enCode);
     }
 }

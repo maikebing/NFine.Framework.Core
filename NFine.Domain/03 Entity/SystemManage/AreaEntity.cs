@@ -2,7 +2,7 @@
 
 namespace NFine.Domain.Entity.SystemManage
 {
-    public class AreaEntity : IEntity<AreaEntity>, ICreationAudited, IDeleteAudited, IModificationAudited
+    public class sys_AreaEntity : IEntity<sys_AreaEntity>, ICreationAudited, IDeleteAudited, IModificationAudited
     {
         public string F_Id { get; set; }
         public string F_ParentId { get; set; }
