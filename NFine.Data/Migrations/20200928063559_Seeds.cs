@@ -952,6 +952,7 @@ INSERT  Sys_Area (`F_Id`, `F_ParentId`, `F_Layers`, `F_EnCode`, `F_FullName`, `F
 INSERT  Sys_Area (`F_Id`, `F_ParentId`, `F_Layers`, `F_EnCode`, `F_FullName`, `F_SimpleSpelling`, `F_SortCode`, `F_DeleteMark`, `F_EnabledMark`, `F_Description`, `F_CreatorTime`, `F_CreatorUserId`, `F_LastModifyTime`, `F_LastModifyUserId`, `F_DeleteTime`, `F_DeleteUserId`) VALUES (N'110100', N'110000', 2, N'110100', N'北京市', N'bjs', 110100, NULL, 1, NULL, null, NULL, NULL, NULL, NULL, NULL);
 
 ");
+            migrationBuilder.Sql(@"UPDATE `nfine_code`.`sys_userlogon` SET `F_UserId` = '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba', `F_UserPassword` = 'ceb6f4a2c5c0c668dae761f4def600e2', `F_UserSecretkey` = '57d3031d6fc4a34d', `F_AllowStartTime` = NULL, `F_AllowEndTime` = NULL, `F_LockStartDate` = NULL, `F_LockEndDate` = NULL, `F_FirstVisitTime` = NULL, `F_PreviousVisitTime` = '2020-09-28 14:56:46', `F_LastVisitTime` = '2020-09-28 15:04:52', `F_ChangePasswordDate` = '2020-09-28 15:05:30', `F_MultiUserLogin` = NULL, `F_LogOnCount` = 103, `F_UserOnLine` = NULL, `F_Question` = NULL, `F_AnswerQuestion` = NULL, `F_CheckIPAddress` = NULL, `F_Language` = NULL, `F_Theme` = NULL WHERE `F_Id` = '9f2ec079-7d0f-4fe2-90ab-8b09a8302aba';");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
