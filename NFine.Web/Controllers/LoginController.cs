@@ -63,7 +63,6 @@ namespace NFine.Web.Controllers
                     if (userEntity.F_Account == "admin")
                     {
                         operatorModel.IsSystem = true;
-                        userApp.ChangePassworld(operatorModel.UserId, "000000", "000000");
                     }
                     else
                     {

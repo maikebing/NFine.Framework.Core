@@ -1,7 +1,11 @@
-version: '3.4'
+﻿version: '3.4'
 
 services:
   nfine.web:
+    image: ${DOCKER_REGISTRY-}nfineweb
+    build:
+        context: .
+        dockerfile: NFine.Web/Dockerfile
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
     ports:

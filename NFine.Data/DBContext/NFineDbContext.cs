@@ -13,7 +13,10 @@ namespace NFine.Data
         public NFineDbContext(DbContextOptions options)
             : base(options)
         {
-
+            if (this.Database.GetPendingMigrations().Count() > 0)
+            {
+                Database.Migrate();
+            }
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -26,7 +29,7 @@ namespace NFine.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             string executingAssemblyDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-           
+
             string mappingAssemblePath = Path.Combine(executingAssemblyDirectory, "NFine.Mapping.dll");
 
             if (!File.Exists(mappingAssemblePath))
@@ -40,7 +43,7 @@ namespace NFine.Data
             foreach (var type in typesToRegister)
             {
                 object configurationInstance = Activator.CreateInstance(type);
-               
+
                 modelBuilder.AddConfiguration(type, configurationInstance);
             }
             //modelBuilder.AddConfiguration(new UserMap());
