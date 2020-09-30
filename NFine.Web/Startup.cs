@@ -14,6 +14,8 @@ using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.DependencyModel;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore.Migrations.Internal;
+using Microsoft.Extensions.Logging;
+using NLog.Web;
 
 namespace NFine.Web
 {
@@ -44,7 +46,10 @@ namespace NFine.Web
                 options.IdleTimeout = TimeSpan.FromMinutes(20);
                 options.Cookie.HttpOnly = true;
             });
-
+            services.AddLogging(config =>
+            {
+                config.AddConsole();
+            });
             //添加mvc自定义寻址Razor页面地址
             mvcBuilder.AddRazorOptions(options =>
             {

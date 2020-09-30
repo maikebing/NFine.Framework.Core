@@ -1,18 +1,5 @@
 ﻿version: '3.4'
 services:
-    nat:
-        container_name: nat  
-        image: ${DOCKER_REGISTRY-}nfineweb
-        ports:
-            - "6000:80"
-        depends_on:
-          - db
-        links:
-          - db
-        volumes:
-          - "${APP_DIR}/appsettings.Production.json:/app/appsettings.Production.json"
-        networks:
-          - nat-network
     db:
         container_name: db  
         image: mysql:5.7.28
@@ -24,11 +11,28 @@ services:
         command: [
             '--character-set-server=utf8',
             '--collation-server=utf8_general_ci',
+            '--lower_case_table_names=1'
             ]
         volumes:
             - "${APP_DIR}/data:/var/lib/mysql"
         networks:
             - nat-network
+
+    nat:
+        container_name: nat  
+        image: ${DOCKER_REGISTRY-}nfineweb
+        ports:
+            - "6060:80"
+        depends_on:
+          - db
+        links:
+          - db
+        volumes:
+          - "${APP_DIR}/appsettings.Production.json:/app/appsettings.Production.json"
+        networks:
+          - nat-network
+
+
 
 
 networks: 
