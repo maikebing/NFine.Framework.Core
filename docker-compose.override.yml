@@ -2,7 +2,6 @@
 
 services:
   nfine.web:
-    image: ${DOCKER_REGISTRY-}nfineweb
     build:
         context: .
         dockerfile: NFine.Web/Dockerfile
@@ -10,3 +9,15 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
     ports:
       - "80"
+
+  nfine.mobile:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    build:
+      context: .
+      dockerfile: NFine.Mobile/Dockerfile
+    ports:
+      - "8080"
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro

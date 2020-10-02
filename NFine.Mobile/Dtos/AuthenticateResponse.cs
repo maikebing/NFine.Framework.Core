@@ -1,0 +1,5 @@
+﻿
+namespace NFine.Mobile.Dtos
+{
+   
+}

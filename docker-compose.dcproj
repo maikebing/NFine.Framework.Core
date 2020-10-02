@@ -6,7 +6,7 @@
     <ProjectGuid>2edc749d-1a42-435f-b28c-aa628c33b526</ProjectGuid>
     <DockerLaunchAction>LaunchBrowser</DockerLaunchAction>
     <DockerServiceUrl>{Scheme}://localhost:{ServicePort}</DockerServiceUrl>
-    <DockerServiceName>nfine.web</DockerServiceName>
+    <DockerServiceName>nfine.mobile</DockerServiceName>
   </PropertyGroup>
   <ItemGroup>
     <None Include=".env" />
@@ -22,6 +22,7 @@
     </None>
     <None Include="docker-compose.yml" />
     <None Include=".dockerignore" />
+    <None Include="nat\nginx.conf" />
     <None Include="upgrade.sh" />
   </ItemGroup>
 </Project>
