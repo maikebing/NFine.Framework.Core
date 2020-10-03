@@ -1,4 +1,4 @@
-﻿version: '3.4'
+version: '3.4'
 services:
   db:
     container_name: db  
@@ -19,25 +19,29 @@ services:
     networks:
         - nat-network
 
-  nat:
+  nfine.web:
     container_name: nat  
     image: ${DOCKER_REGISTRY-}nfineweb
     depends_on:
         - db
     links:
         - db
+    ports:
+      - 8081:80
     volumes:
         - "${APP_DIR}/appsettings.Production.json:/app/appsettings.Production.json"
     networks:
         - nat-network
 
-  natapi:
+  nfine.mobile:
     container_name: natapi  
     image: ${DOCKER_REGISTRY-}nfinemobile
     depends_on:
         - db
     links:
         - db
+    ports:
+      - 8082:80
     volumes:
         - "${APP_DIR}/appsettings.Production.json:/app/appsettings.Production.json"
     networks:
@@ -48,13 +52,13 @@ services:
     container_name: web  
     image: nginx
     depends_on:
-        - nat
-        - natapi
+        - nfine.web
+        - nfine.mobile
     links:
-        - nat
-        - natapi
+        - nfine.web
+        - nfine.mobile
     ports:
-      - 6060:80
+      - 6060:6060
     volumes:
       - "${APP_DIR}/nginx.conf:/etc/nginx/conf.d/default.conf"
     networks:

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using NFine.Application.SystemManage;
@@ -12,19 +13,28 @@ using System.Text;
 
 namespace NFine.Mobile.Controllers
 {
+    /// <summary>
+    /// 用户管理接口
+    /// </summary>
     [ApiController]
     [Route("[controller]")]
     public class UsersController : ControllerBase
     {
         private readonly UserApp _userApp;
         private readonly AppSettings _settings;
+        private readonly ILogger<UsersController> _logger;
 
-        public UsersController(UserApp userApp,IOptions< AppSettings>  settings)
+        public UsersController(UserApp userApp,IOptions< AppSettings>  settings,ILogger<UsersController> logger)
         {
             _userApp = userApp;
             _settings = settings.Value;
+            _logger = logger;
         }
-
+        /// <summary>
+        /// 登录接口
+        /// </summary>
+        /// <param name="model">用户名密码， 密码需要计算32位MD5字符串</param>
+        /// <returns></returns>
         [HttpPost("Login")]
         public ActionResult<ApiResult<User>> Login(AuthenticateRequest model)
         {
@@ -67,6 +77,7 @@ namespace NFine.Mobile.Controllers
                 result.Code = ApiCode.InternalServerError;
                 result.Msg = ex.Message;
                 result.Data = null;
+                _logger.LogError(ex, ex.Message);
                 return BadRequest(result);
             }
           
@@ -94,9 +105,12 @@ namespace NFine.Mobile.Controllers
                 };
             }
  
-
+        /// <summary>
+        /// 欢迎语句， 可以用于测试用户是否登录， 授权是否正确
+        /// </summary>
+        /// <returns></returns>
         [Authorize]
-        [HttpGet]
+        [HttpGet("Welcome")]
         public IActionResult Welcome()
         {
             var user = (sys_UserEntity)HttpContext.Items["User"];

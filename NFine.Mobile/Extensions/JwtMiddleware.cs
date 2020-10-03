@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using NFine.Mobile.Dtos;
@@ -15,11 +16,13 @@ namespace NFine.Mobile.Extensions
     {
         private readonly RequestDelegate _next;
         private readonly AppSettings _appSettings;
+        private readonly ILogger<JwtMiddleware> _logger;
 
-        public JwtMiddleware(RequestDelegate next, IOptions<AppSettings> appSettings)
+        public JwtMiddleware(RequestDelegate next, IOptions<AppSettings> appSettings,ILogger<JwtMiddleware> logger)
         {
             _next = next;
             _appSettings = appSettings.Value;
+            _logger = logger;
         }
 
         public async Task Invoke(HttpContext context, IUserService userService)
@@ -50,14 +53,12 @@ namespace NFine.Mobile.Extensions
 
                 var jwtToken = (JwtSecurityToken)validatedToken;
                 var userId =  jwtToken.Claims.First(x => x.Type == "id").Value;
-
                 // attach user to context on successful jwt validation
                 context.Items["User"] = userService.GetUserById(userId);
             }
-            catch
+            catch (Exception ex)
             {
-                // do nothing if jwt validation fails
-                // user is not attached to context so request won't have access to secure routes
+                _logger.LogError(ex, $"{ex.Message}do nothing if jwt validation fails user is not attached to context so request won't have access to secure routes");
             }
         }
     }

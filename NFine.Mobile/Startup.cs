@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -38,7 +38,7 @@ namespace NFine.Mobile
             services.AddControllers();
             services.Configure<ForwardedHeadersOptions>(options =>
             {
-                options.ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
+                options.ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto | ForwardedHeaders.XForwardedHost;
             });
             // configure strongly typed settings object
             services.Configure<AppSettings>(Configuration.GetSection("appSettings"));
@@ -98,9 +98,10 @@ namespace NFine.Mobile
             {
                 app.UseDeveloperExceptionPage();
             }
+    
             app.UseForwardedHeaders(new ForwardedHeadersOptions
             {
-                ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
+                ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto | ForwardedHeaders.XForwardedHost
             });
             app.UseSwaggerUi3();
             app.UseOpenApi();

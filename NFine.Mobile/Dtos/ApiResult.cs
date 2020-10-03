@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,11 +16,18 @@ namespace NFine.Mobile.Dtos
             Code =  _code;
             Msg = _msg;
         }
-
+        /// <summary>
+        /// 错误代码
+        /// </summary>
         public ApiCode Code { get; set; } =  ApiCode.OK;
+        /// <summary>
+        /// 错误信息
+        /// </summary>
         public string Msg { get; set; } = "OK";
     }
-
+    /// <summary>
+    /// 错误码
+    /// </summary>
     public enum ApiCode:int
     {
         /// <summary>
@@ -76,6 +83,9 @@ namespace NFine.Mobile.Dtos
         {
             Data = data;
         }
+        /// <summary>
+        /// 欲返回的数据
+        /// </summary>
         public T Data { set; get; }
     }
    
