@@ -1,10 +1,21 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UserSecretsId>3b4b7f5c-6425-4827-9d7a-aba82cc7c33b</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>
+    <Version>1.0.1</Version>
+    <Company>新疆正大电子有限公司</Company>
+    <Authors>新疆正大电子有限公司</Authors>
+    <Product>NAT.Mobile</Product>
+    <Description>疾控中心核酸检测</Description>
+    <Copyright>Copyright 新疆正大电子有限公司 2020</Copyright>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>D:\Works\NFine.Framework.Core\NFine.Mobile\NFine.Mobile.xml</DocumentationFile>
+    <NoWarn>1701;1702;1591</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>

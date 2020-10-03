@@ -5,12 +5,22 @@ using System.Threading.Tasks;
 
 namespace NFine.Mobile.Dtos
 {
+    /// <summary>
+    /// API返回结果
+    /// </summary>
     public class ApiResult
     {
+        /// <summary>
+        ///  API返回结果
+        /// </summary>
         public ApiResult()
         {
         }
-
+        /// <summary>
+        ///  API返回结果
+        /// </summary>
+        /// <param name="_code">代码</param>
+        /// <param name="_msg">描述</param>
         public ApiResult(ApiCode _code, string _msg)
         {
             Code =  _code;
