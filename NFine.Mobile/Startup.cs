@@ -5,6 +5,7 @@ using System.Reflection;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -35,11 +36,15 @@ namespace NFine.Mobile
         {
             services.AddCors();
             services.AddControllers();
-
+            services.Configure<ForwardedHeadersOptions>(options =>
+            {
+                options.ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
+            });
             // configure strongly typed settings object
             services.Configure<AppSettings>(Configuration.GetSection("appSettings"));
             services.AddSwaggerDocument(configure =>
             {
+                
                 Assembly assembly = typeof(Startup).GetTypeInfo().Assembly;
                 AssemblyDescriptionAttribute description = (AssemblyDescriptionAttribute)Attribute.GetCustomAttribute(assembly, typeof(AssemblyDescriptionAttribute));
                 configure.Title = typeof(Startup).GetTypeInfo().Assembly.GetName().Name;
@@ -93,11 +98,17 @@ namespace NFine.Mobile
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseForwardedHeaders(new ForwardedHeadersOptions
+            {
+                ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
+            });
             app.UseSwaggerUi3();
             app.UseOpenApi();
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+           
 
             app.UseAuthorization();
             app.UseMiddleware<JwtMiddleware>();

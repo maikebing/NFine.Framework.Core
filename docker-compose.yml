@@ -36,7 +36,6 @@ services:
     image: ${DOCKER_REGISTRY-}nfinemobile
     depends_on:
         - db
-        - nat
     links:
         - db
     volumes:
@@ -58,6 +57,8 @@ services:
       - 6060:80
     volumes:
       - "${APP_DIR}/nginx.conf:/etc/nginx/conf.d/default.conf"
+    networks:
+      - nat-network
 
 networks: 
   nat-network:
