@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -24,8 +24,7 @@ namespace NFine.Code.Middleware
             }
             catch (Exception ex)
             {
-                NFine.Code.Logger<ExceptionHandlerMiddleware>.Trace("错误信息"+ex.Message);
-                NFine.Code.Logger<ExceptionHandlerMiddleware>.Error(ex);
+               
                 var statusCode = context.Response.StatusCode;
                 if (ex is ArgumentException)
                 {
