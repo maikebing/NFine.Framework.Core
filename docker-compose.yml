@@ -17,10 +17,10 @@ services:
     volumes:
         - "${APP_DIR}/data:/var/lib/mysql"
     networks:
-        - nat-network
+        - nfine-network
 
   nfine.web:
-    container_name: nat  
+    container_name: nfine  
     image: ${DOCKER_REGISTRY-}nfineweb
     depends_on:
         - db
@@ -31,10 +31,10 @@ services:
     volumes:
         - "${APP_DIR}/appsettings.Production.json:/app/appsettings.Production.json"
     networks:
-        - nat-network
+        - nfine-network
 
   nfine.mobile:
-    container_name: natapi  
+    container_name: nfineapi  
     image: ${DOCKER_REGISTRY-}nfinemobile
     depends_on:
         - db
@@ -45,7 +45,7 @@ services:
     volumes:
         - "${APP_DIR}/appsettings.Production.json:/app/appsettings.Production.json"
     networks:
-      - nat-network
+      - nfine-network
 
   nginx:
     restart: always
@@ -62,8 +62,9 @@ services:
     volumes:
       - "${APP_DIR}/nginx.conf:/etc/nginx/conf.d/default.conf"
     networks:
-      - nat-network
+      - nfine-network
 
 networks: 
-  nat-network:
+  nfine-network:
       driver:  bridge
+      enable_ipv6: false

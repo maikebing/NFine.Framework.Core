@@ -1,10 +1,17 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>
     <UserSecretsId>9d26bbde-bcce-4bb9-945a-e835b4268252</UserSecretsId>
+    <Version>1.0.1</Version>
+    <Company>NFine.Org</Company>
+    <Product>NFine.Org</Product>
+    <Description>NFine.Org</Description>
+    <Authors>NFine.Org</Authors>
+    <Copyright>NFine.Org</Copyright>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
 
   <ItemGroup>

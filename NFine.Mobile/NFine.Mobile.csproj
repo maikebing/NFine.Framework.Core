@@ -6,11 +6,12 @@
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>
     <Version>1.0.1</Version>
-    <Company>新疆正大电子有限公司</Company>
-    <Authors>新疆正大电子有限公司</Authors>
+    <Company>NFine.Org</Company>
+    <Authors>NFine.Org</Authors>
     <Product>NAT.Mobile</Product>
-    <Description>疾控中心核酸检测</Description>
-    <Copyright>Copyright 新疆正大电子有限公司 2020</Copyright>
+    <Description>NFine.Org</Description>
+    <Copyright>Copyright NFine.Org 2020</Copyright>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
